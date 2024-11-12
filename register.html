@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar - BlueVelvet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo BlueVelvet" class="logo">
+        </div>
+
+        <h2>Registrar Conta - BlueVelvet</h2>
+        <form id="register-form">
+            <div class="input-group">
+                <label for="full-name">Nome Completo</label>
+                <input type="text" id="full-name" name="full-name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirmar Senha</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <!-- Campo de seleção de Role -->
+            <div class="input-group">
+                <label for="role">Selecione o Cargo</label>
+                <select id="role" name="role" required>
+                    <option value="">Escolha uma função</option>
+                    <option value="Administrator">Administrador</option>
+                    <option value="Sales Manager">Gerente de Vendas</option>
+                    <option value="Editor">Editor</option>
+                    <option value="Assistant">Assistente</option>
+                    <option value="Shipping Manager">Gerente de Logística</option>
+                </select>
+            </div>
+            <button type="submit">Registrar</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+        <p>Já tem uma conta? <a href="index.html">Faça login</a></p>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>

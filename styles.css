@@ -1,0 +1,161 @@
+/* Reset básico para garantir que o layout seja consistente */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F1F9FF; /* Fundo azul suave */
+    color: #333; /* Cor de texto padrão */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Container principal do formulário */
+.container {
+    background-color: #FFFFFF; /* Fundo branco para o formulário */
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Logo */
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 200px; /* Ajuste o tamanho da logo para 200px de largura */
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+/* Título principal */
+h2 {
+    font-size: 28px;
+    color: #5646F9; /* Azul escuro */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 25px;
+    color: #961996; /* Azul escuro */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Grupo de entradas (inputs) */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Estilo para os inputs */
+input[type="email"], input[type="password"], input[type="text"], select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #8A8BF5; /* Bordas azul claro */
+    border-radius: 8px;
+    margin-top: 5px;
+    background-color: #f7faff; /* Azul bem suave */
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao focar nos inputs */
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, select:focus {
+    border-color: #5646F9; /* Azul mais escuro ao focar */
+    background-color: #fff;
+}
+
+/* Estilo do botão */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #8A8BF5; /* Azul claro */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+button:hover {
+    background-color: #5646F9; /* Azul escuro */
+}
+
+/* Modal de erro */
+.modal {
+    display: none; /* Esconde o modal inicialmente */
+    position: fixed;
+    z-index: 1; /* Fica em cima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative; /* Para posicionar o botão de fechar */
+}
+
+/* Botão de fechar */
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Botão de fechar no hover */
+.close-btn:hover,
+.close-btn:focus {
+    color: #5646F9;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo do botão no modal */
+#close-modal-btn {
+    background-color: #5646F9; /* Azul escuro */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 18px; /* Adiciona um espaço entre o texto e o botão de fechar */
+}
+
+#close-modal-btn:hover {
+    background-color: #8A8BF5; /* Azul claro */
+}
+
+
