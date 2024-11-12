@@ -50,7 +50,7 @@ h2 {
 h3 {
     font-size: 25px;
     color: #961996; /* Azul escuro */
-    margin-bottom: 20px;
+    margin-bottom: px;
     font-weight: 700;
 }
 
@@ -142,9 +142,10 @@ button:hover {
     cursor: pointer;
 }
 
+
 /* Estilo do botão no modal */
 #close-modal-btn {
-    background-color: #5646F9; /* Azul escuro */
+    background-color: #5646f9; /* Azul escuro */
     color: #fff;
     border: none;
     padding: 10px 20px;
