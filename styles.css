@@ -8,8 +8,8 @@
 /* Corpo da página */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #F1F9FF; /* Fundo azul suave */
-    color: #333; /* Cor de texto padrão */
+    background-color: #DBE9FA; /* Fundo azul suave */
+    color: #1a1919; /* Cor de texto padrão */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,7 @@ body {
 }
 
 .logo {
-    width: 200px; /* Ajuste o tamanho da logo para 200px de largura */
+    width: 200px; 
     height: auto;
     display: block;
     margin: 0 auto 20px;
@@ -42,14 +42,14 @@ body {
 /* Título principal */
 h2 {
     font-size: 28px;
-    color: #5646F9; /* Azul escuro */
+    color: #2234aa; /* Azul escuro */
     margin-bottom: 20px;
     font-weight: 700;
 }
 
 h3 {
     font-size: 25px;
-    color: #961996; /* Azul escuro */
+    color: #7a137a; /* ROXO escuro */
     margin-bottom: px;
     font-weight: 700;
 }
@@ -66,18 +66,24 @@ input[type="email"], input[type="password"], input[type="text"], select {
     width: 100%;
     padding: 12px 15px;
     font-size: 16px;
-    border: 2px solid #8A8BF5; /* Bordas azul claro */
+    border: 2px solid #4462E1; /* Bordas azul claro */
     border-radius: 8px;
     margin-top: 5px;
-    background-color: #f7faff; /* Azul bem suave */
-    color: #333;
+    background-color: #EDF3FD; /* Azul bem suave */
+    color: #1a1919;
     outline: none;
     transition: all 0.3s ease;
 }
 
 /* Efeito ao focar nos inputs */
 input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, select:focus {
-    border-color: #5646F9; /* Azul mais escuro ao focar */
+    border: 2px outset #4462e1; /* Azul mais escuro ao focar */
+    background-color: #fff;
+    animation-duration: 2s;
+}
+
+input[type="email"], input[type="password"], input[type="text"]{
+    border: 2px solid #95cfff;
     background-color: #fff;
 }
 
@@ -86,7 +92,7 @@ button {
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    background-color: #8A8BF5; /* Azul claro */
+    background-color: #4067d0; /* Azul claro */
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -96,7 +102,7 @@ button {
 
 /* Efeito ao passar o mouse sobre o botão */
 button:hover {
-    background-color: #5646F9; /* Azul escuro */
+    background-color: #2234aa; /* Azul escuro */
 }
 
 /* Modal de erro */
@@ -137,7 +143,7 @@ button:hover {
 /* Botão de fechar no hover */
 .close-btn:hover,
 .close-btn:focus {
-    color: #5646F9;
+    color: #2539bb;
     text-decoration: none;
     cursor: pointer;
 }
@@ -145,7 +151,7 @@ button:hover {
 
 /* Estilo do botão no modal */
 #close-modal-btn {
-    background-color: #5646f9; /* Azul escuro */
+    background-color: #2539bb; /* Azul escuro */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -156,7 +162,7 @@ button:hover {
 }
 
 #close-modal-btn:hover {
-    background-color: #8A8BF5; /* Azul claro */
+    background-color: #4067d0; /* Azul claro */
 }
 
 
