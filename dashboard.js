@@ -13,6 +13,31 @@ function renderProducts() {
         product.category.toLowerCase().includes(search)
     );
 
+    // Função para verificar o papel do usuário e exibir o botão de Add Product
+function checkUserRole() {
+    const loggedInEmail = localStorage.getItem("loggedInEmail");
+
+    if (loggedInEmail) {
+        const user = JSON.parse(localStorage.getItem(loggedInEmail));
+
+        if (user && user.role === "administrator") {
+            document.getElementById("add-product-btn").style.display = "inline-block";
+        }
+    }
+}
+
+// Event listener para redirecionar ao clicar no botão
+document.getElementById("add-product-btn").addEventListener("click", () => {
+    window.location.href = "createProduct.html";
+});
+
+// Chamar a função ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    displayUserData();  // Exibe os dados do usuário
+    renderProducts();   // Renderiza os produtos
+    checkUserRole();    // Checa o papel do usuário
+});
+
     // Ordena os produtos
     const sortedProducts = sortProducts(filteredProducts);
 
