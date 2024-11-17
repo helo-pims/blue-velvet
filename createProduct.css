@@ -1,0 +1,117 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #DBE9FA; /* Fundo azul suave */
+    color: #1a1919; /* Cor de texto padrão */
+    padding: 20px;
+}
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Container principal */
+.create-product-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Título da página */
+.create-product-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-product-header h1 {
+    font-size: 24px;
+    color: #2234aa; /* Azul escuro */
+}
+
+/* Lista de campos */
+.form-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Labels */
+.create-product-form label {
+    font-size: 14px;
+    color: #1a1919;
+    font-weight: bold;
+}
+
+/* Inputs e Textareas */
+.create-product-form input,
+.create-product-form textarea,
+.create-product-form select {
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #4462E1; /* Bordas azul claro */
+    border-radius: 8px;
+    background-color: #EDF3FD; /* Azul suave */
+}
+
+/* Estilos específicos para Textareas */
+.create-product-form textarea {
+    resize: vertical; /* Permite redimensionar apenas na vertical */
+    width: 100%; /* Largura total */
+    max-width: 100%; /* Largura máxima total */
+}
+
+/* Botões de ação */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    background-color: #4067d0; /* Azul claro */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.form-actions button:hover {
+    background-color: #2234aa; /* Azul escuro */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .create-product-container {
+        padding: 10px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+}
