@@ -212,7 +212,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .product-table {
         grid-template-columns: 1fr; /* Mostra um produto por linha */
     }
