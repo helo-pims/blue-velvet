@@ -1,24 +1,7 @@
-const products = JSON.parse(localStorage.getItem('products'));
+const products = JSON.parse(localStorage.getItem('products')) || [];
 
 let currentPage = 1;
 const productsPerPage = 10;
-
-// Função para verificar autorização do usuário
-function checkAuthorization() {
-    const user = localStorage.getItem("user");
-    if (!user) {
-        document.getElementById("error-message").style.display = "block";
-        return false;
-    }
-    const { username, role } = JSON.parse(user);
-    if (role !== "admin" && role !== "salesperson" && role !== "shipper") {
-        document.getElementById("error-message").style.display = "block";
-        return false;
-    }
-    document.getElementById("username").textContent = username;
-    document.getElementById("role").textContent = role;
-    return true;
-}
 
 // Função para renderizar produtos
 function renderProducts() {
@@ -30,17 +13,8 @@ function renderProducts() {
         product.category.toLowerCase().includes(search)
     );
 
-    const sortBy = document.getElementById("sort-by").value;
-    const order = document.getElementById("order").value;
-
-    const sortedProducts = filteredProducts.sort((a, b) => {
-        if (sortBy === "name") return a.name.localeCompare(b.name);
-        if (sortBy === "id") return a.id - b.id;
-        if (sortBy === "brand") return a.brand.localeCompare(b.brand);
-        if (sortBy === "category") return a.category.localeCompare(b.category);
-    });
-
-    if (order === "desc") sortedProducts.reverse();
+    // Ordena os produtos
+    const sortedProducts = sortProducts(filteredProducts);
 
     const startIndex = (currentPage - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
@@ -67,15 +41,55 @@ function renderProducts() {
     document.getElementById("next-page").disabled = currentPage * productsPerPage >= filteredProducts.length;
 }
 
+// Função para ordenar os produtos
+function sortProducts(filteredProducts) {
+    const sortBy = document.getElementById("sort-by").value;
+    const order = document.getElementById("order").value;
+
+    const sortedProducts = filteredProducts.sort((a, b) => {
+        if (sortBy === "name") return a.name.localeCompare(b.name);
+        if (sortBy === "id") return a.id - b.id;
+        if (sortBy === "brand") return a.brand.localeCompare(b.brand);
+        if (sortBy === "category") return a.category.localeCompare(b.category);
+    });
+
+    // Inverte a ordem se necessário
+    if (order === "desc") sortedProducts.reverse();
+
+    return sortedProducts;
+}
+
 // Função para lidar com logout
 function handleLogout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("loggedInEmail"); // Remove o email do usuário logado
     window.location.href = "index.html"; // Redireciona para index.html ao fazer logout
 }
 
 // Função para visualizar detalhes do produto
 function viewDetails(productId) {
     alert(`Viewing details for product ID: ${productId}`);
+}
+
+// Função para exibir o nome de usuário e o papel
+function displayUserData() {
+    const loggedInEmail = localStorage.getItem("loggedInEmail");
+    
+    if (loggedInEmail) {
+        const user = JSON.parse(localStorage.getItem(loggedInEmail));
+        
+        if (user) {
+            document.getElementById("username").textContent = user.fullName; // Acesse as propriedades corretas
+            document.getElementById("role").textContent = user.role;
+        } else {
+            console.error("Usuário não encontrado.");
+            document.getElementById("username").textContent = "Guest";
+            document.getElementById("role").textContent = "Visitor";
+        }
+    } else {
+        console.error("Nenhum usuário logado.");
+        document.getElementById("username").textContent = "Guest";
+        document.getElementById("role").textContent = "Visitor";
+    }
 }
 
 // Event listeners
@@ -93,7 +107,8 @@ document.getElementById("reset-btn").addEventListener("click", () => {
     renderProducts();
 });
 
-// Verificação inicial de autorização
-if (checkAuthorization()) {
-    renderProducts();
-}
+// Chame essa função ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    displayUserData(); // Exibe os dados do usuário
+    renderProducts();   // Renderiza os produtos
+});

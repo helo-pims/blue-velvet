@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
+    <script type="module" src="init_products.js"></script>
     <div class="dashboard-container">
         <!-- Header -->
         <header class="dashboard-header">
@@ -40,15 +41,9 @@
                 <button id="next-page">Next</button>
             </div>
         </section>
-
-        <!-- Error Message for Unauthorized Access -->
-        <div id="error-message" class="error-message" style="display: none;">
-            <p>You must be logged in as an admin, salesperson, or shipper to access this page.</p>
-        </div>
     </div>
 
     <!-- Load scripts -->
-    <script type="module" src="init_products.js"></script>
     <script src="dashboard.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const loggedInUser = JSON.parse(localStorage.getItem('adminUser'));
+    const loggedInUser = JSON.parse(localStorage.getItem('users'));
     console.log(loggedInUser);
 
     // Verifica se o usuário é administrador
@@ -13,8 +13,8 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     event.preventDefault();
 
     // Captura os dados do formulário
-    const fullName = document.getElementById('full-name').value;
-    const email = document.getElementById('email').value;
+    const fullName = document.getElementById('full-name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
     const role = document.getElementById('role').value;
@@ -23,6 +23,17 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     errorMessage.textContent = '';
 
     // Validações
+    if (!fullName || !email || !password || !confirmPassword || !role) {
+        errorMessage.textContent = "Todos os campos devem ser preenchidos.";
+        return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        errorMessage.textContent = "Por favor, insira um email válido.";
+        return;
+    }
+
     if (password.length < 8) {
         errorMessage.textContent = "A senha deve ter pelo menos 8 caracteres.";
         return;
@@ -33,8 +44,8 @@ document.getElementById('register-form').addEventListener('submit', function(eve
         return;
     }
 
-    if (!role) {
-        errorMessage.textContent = "Por favor, selecione uma função.";
+    if (localStorage.getItem(email)) {
+        errorMessage.textContent = "Um usuário com este email já está registrado.";
         return;
     }
 
@@ -42,6 +53,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     const user = { fullName, email, password, role };
     localStorage.setItem(email, JSON.stringify(user));
 
-    // Redireciona para o login
+    // Feedback e redirecionamento
+    alert("Usuário registrado com sucesso!");
     window.location.href = "index.html";
 });

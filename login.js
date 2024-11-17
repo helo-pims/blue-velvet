@@ -1,42 +1,50 @@
-// Evento de submissão do formulário de login
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('email').value.trim(); // Remove espaços em branco
     const password = document.getElementById('password').value;
 
-    const user = JSON.parse(localStorage.getItem(user));
+    const user = JSON.parse(localStorage.getItem(email)); // Acesso ao usuário
 
     const errorModal = document.getElementById('error-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const closeBtn = document.querySelector('.close-btn'); // Seleciona o botão "X"
     const modalMessage = document.getElementById('modal-message');
 
     modalMessage.textContent = ''; // Resetando mensagem do modal
 
+    // Verifica se os campos estão preenchidos
+    if (!email || !password) {
+        modalMessage.textContent = "Por favor, preencha todos os campos.";
+        errorModal.style.display = 'flex';
+        return;
+    }
+
+    // Verifica se o usuário existe e se a senha está correta
     if (user && user.password === password) {
-        window.location.href = "dashboard.html";
+        localStorage.setItem("loggedInEmail", email); // Armazena o email do usuário logado
+        window.location.href = "dashboard.html"; // Redireciona para o dashboard
     } else {
         modalMessage.textContent = "Email ou senha incorretos. Por favor, tente novamente.";
         errorModal.style.display = 'flex'; // Exibe o modal de erro
     }
+});
 
-    // Fechar o modal ao clicar no botão "Fechar"
-    closeModalBtn.addEventListener('click', function() {
-        errorModal.style.display = 'none';
-    });
+// Listeners de modal fora do submit
+const closeModalBtn = document.getElementById('close-modal-btn');
+const closeBtn = document.querySelector('.close-btn'); // Seleciona o botão "X"
+const errorModal = document.getElementById('error-modal');
 
-    // Fechar o modal ao clicar no botão "X"
-    closeBtn.addEventListener('click', function() {
-        errorModal.style.display = 'none';
-    });
+// Função para fechar o modal
+function closeModal() {
+    errorModal.style.display = 'none';
+}
 
-    // Fechar o modal clicando fora do conteúdo
-    window.addEventListener('click', function(event) {
-        if (event.target === errorModal) {
-            errorModal.style.display = 'none';
-        }
-    });
+closeModalBtn.addEventListener('click', closeModal);
+closeBtn.addEventListener('click', closeModal);
+
+window.addEventListener('click', function(event) {
+    if (event.target === errorModal) {
+        closeModal();
+    }
 });
 
 // Redireciona para a página de login de administrador ao clicar em "Registrar-se"
