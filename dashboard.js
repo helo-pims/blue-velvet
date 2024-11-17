@@ -107,6 +107,22 @@ document.getElementById("reset-btn").addEventListener("click", () => {
     renderProducts();
 });
 
+// Adicionando evento para atualizar a renderização quando o filtro ou ordenação mudar
+document.getElementById("search").addEventListener("input", () => {
+    currentPage = 1; // Resetar a página
+    renderProducts();
+});
+
+document.getElementById("sort-by").addEventListener("change", () => {
+    currentPage = 1; // Resetar a página
+    renderProducts();
+});
+
+document.getElementById("order").addEventListener("change", () => {
+    currentPage = 1; // Resetar a página
+    renderProducts();
+});
+
 // Chame essa função ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     displayUserData(); // Exibe os dados do usuário
