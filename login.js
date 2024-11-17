@@ -1,45 +1,52 @@
+// Evento de submissão do formulário de login
 document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Previne o envio do formulário para validar os dados antes
+    event.preventDefault();
 
-    // Captura os dados do formulário
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    
-    // Simulação de verificação de e-mail e senha no banco (aqui estamos usando localStorage como exemplo)
-    const user = JSON.parse(localStorage.getItem(email));
 
-    // Modal de erro
+    const user = JSON.parse(localStorage.getItem(user));
+
     const errorModal = document.getElementById('error-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
+    const closeBtn = document.querySelector('.close-btn'); // Seleciona o botão "X"
     const modalMessage = document.getElementById('modal-message');
 
-    // Resetando a mensagem do modal
-    modalMessage.textContent = '';
+    modalMessage.textContent = ''; // Resetando mensagem do modal
 
     if (user && user.password === password) {
-        // Se o login for bem-sucedido
-        window.location.href = "dashboard.html"; // Redireciona para a página de admin (dashboard)
+        window.location.href = "dashboard.html";
     } else {
-        // Se o login falhar
         modalMessage.textContent = "Email ou senha incorretos. Por favor, tente novamente.";
-        errorModal.style.display = 'flex'; // Exibe o modal
+        errorModal.style.display = 'flex'; // Exibe o modal de erro
     }
+
+    // Fechar o modal ao clicar no botão "Fechar"
+    closeModalBtn.addEventListener('click', function() {
+        errorModal.style.display = 'none';
+    });
+
+    // Fechar o modal ao clicar no botão "X"
+    closeBtn.addEventListener('click', function() {
+        errorModal.style.display = 'none';
+    });
+
+    // Fechar o modal clicando fora do conteúdo
+    window.addEventListener('click', function(event) {
+        if (event.target === errorModal) {
+            errorModal.style.display = 'none';
+        }
+    });
 });
 
-// Fechar o modal ao clicar no botão "Fechar"
-document.querySelector('.close-btn').addEventListener('click', function() {
-    document.getElementById('error-modal').style.display = 'none';
-});
+// Redireciona para a página de login de administrador ao clicar em "Registrar-se"
+document.getElementById('register-link').addEventListener('click', function(event) {
+    event.preventDefault();
 
-// Fechar o modal ao clicar no botão "Fechar" dentro do modal
-document.getElementById('close-modal-btn').addEventListener('click', function() {
-    document.getElementById('error-modal').style.display = 'none';
-});
+    const adminWarningModal = document.getElementById('admin-warning-modal');
+    adminWarningModal.style.display = "flex";
 
-// Fechar o modal clicando fora do conteúdo do modal
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('error-modal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
+    document.getElementById('go-to-admin-login').addEventListener('click', function() {
+        window.location.href = "admin-login.html";
+    });
 });

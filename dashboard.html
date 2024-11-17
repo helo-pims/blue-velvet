@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <h1>Product Management Dashboard</h1>
+            <p>Welcome, <span id="username"></span> (<span id="role"></span>)</p>
+            <button id="logout-btn">Logout</button>
+        </header>
+        
+        <!-- Product List -->
+        <section class="product-list">
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Search by name, description, brand, or category">
+                <button id="reset-btn">Reset Product List</button>
+            </div>
+            <div class="sort-options">
+                <select id="sort-by">
+                    <option value="name">Sort by Name</option>
+                    <option value="id">Sort by ID</option>
+                    <option value="brand">Sort by Brand</option>
+                    <option value="category">Sort by Category</option>
+                </select>
+                <select id="order">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+            <div id="product-table" class="product-table"></div> <!-- Products will be displayed here dynamically -->
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-number">Page 1</span>
+                <button id="next-page">Next</button>
+            </div>
+        </section>
+
+        <!-- Error Message for Unauthorized Access -->
+        <div id="error-message" class="error-message" style="display: none;">
+            <p>You must be logged in as an admin, salesperson, or shipper to access this page.</p>
+        </div>
+    </div>
+
+    <!-- Load scripts -->
+    <script type="module" src="init_products.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

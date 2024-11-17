@@ -1,5 +1,16 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const loggedInUser = JSON.parse(localStorage.getItem('adminUser'));
+    console.log(loggedInUser);
+
+    // Verifica se o usuário é administrador
+    if (!loggedInUser || loggedInUser.role !== 'admin') {
+        alert('Acesso negado. Apenas administradores podem registrar novos usuários.');
+        window.location.href = 'index.html';
+    }
+});
+
 document.getElementById('register-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Previne o envio do formulário para validar os dados antes
+    event.preventDefault();
 
     // Captura os dados do formulário
     const fullName = document.getElementById('full-name').value;
@@ -8,41 +19,29 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     const confirmPassword = document.getElementById('confirm-password').value;
     const role = document.getElementById('role').value;
 
-    // Mensagens de erro
     const errorMessage = document.getElementById('error-message');
-
-    // Resetando as mensagens de erro
     errorMessage.textContent = '';
 
-    // Validação de senha
+    // Validações
     if (password.length < 8) {
         errorMessage.textContent = "A senha deve ter pelo menos 8 caracteres.";
         return;
     }
 
-    // Validação de confirmação de senha
     if (password !== confirmPassword) {
         errorMessage.textContent = "As senhas não coincidem.";
         return;
     }
 
-    // Validação de campo de cargo
     if (!role) {
         errorMessage.textContent = "Por favor, selecione uma função.";
         return;
     }
 
-    // Simulação de salvar o usuário (aqui estamos usando o localStorage para simulação)
-    const user = {
-        fullName: fullName,
-        email: email,
-        password: password,
-        role: role
-    };
-
-    // Salvar usuário no localStorage (poderia ser no banco de dados)
+    // Salva o usuário no localStorage
+    const user = { fullName, email, password, role };
     localStorage.setItem(email, JSON.stringify(user));
 
-    // Redirecionar para a página de login após o registro
+    // Redireciona para o login
     window.location.href = "index.html";
 });

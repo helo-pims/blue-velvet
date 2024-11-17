@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Logo -->
         <div class="logo-container">
             <img src="img/Blue Velvet.png" alt="Logo BlueVelvet" class="logo">
         </div>
@@ -28,22 +27,34 @@
                 <label for="remember">Lembrar minhas credenciais</label>
             </div>
             <button type="submit">Entrar</button>
-            <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
+            <p>Não tem uma conta? <a href="#" id="register-link">Registrar-se</a></p>
         </form>
     </div>
 
-   <!-- Modal de erro -->
-<div id="error-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h3>Erro</h3>
-        <img src="img/caution.png" alt="ícone de erro" class="error-icon"> <!-- Ícone de erro -->
-        <p id="modal-message">Email ou senha incorretos. Por favor, tente novamente.</p>
-        <button id="close-modal-btn">Fechar</button>
+    <!-- Modal de erro -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Erro</h3>
+            <img src="img/caution.png" alt="ícone de erro" class="error-icon">
+            <p id="modal-message">Email ou senha incorretos. Por favor, tente novamente.</p>
+            <button id="close-modal-btn">Fechar</button>
+        </div>
     </div>
-</div>
 
+    <!-- Modal de restrição de administrador -->
+    <div id="admin-warning-modal" class="modal">
+        <div class="modal-content">
+            <h3>Restrição</h3>
+            <img src="img/caution.png" alt="ícone de erro" class="error-icon">
+            <p id="modal-message">Apenas administradores podem registrar novos usuários.</p> <br>
+            <button id="go-to-admin-login">Continuar</button>
+        </div>
+    </div>
 
+    <script src="initialize.js"></script>
     <script src="login.js"></script>
 </body>
 </html>
+
+
