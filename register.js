@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const loggedInUser = JSON.parse(localStorage.getItem('users'));
+    const loggedInUser = JSON.parse(localStorage.getItem('adminUser'));
     console.log(loggedInUser);
 
     // Verifica se o usuário é administrador

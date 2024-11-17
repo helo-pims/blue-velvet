@@ -12,6 +12,9 @@ document.getElementById('admin-login-form').addEventListener('submit', function(
 
     const user = JSON.parse(localStorage.getItem(email));
 
+    // Log para verificar o que foi recuperado
+    console.log("Usuário recuperado:", user);
+
     if (!user) {
         alert("Usuário não encontrado.");
     } else if (user.password !== password) {
