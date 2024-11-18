@@ -9,7 +9,7 @@ if (!localStorage.getItem("admin@example.com")) {
         },
         {
             fullName: "Heloisa",
-            email: "helo@bluevelvet.com",
+            email: "helo@gmail.com",
             password: "helo1234",
             role: "salesperson",
         },

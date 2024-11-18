@@ -1,4 +1,5 @@
-const products = JSON.parse(localStorage.getItem('products')) || [];
+let products = JSON.parse(localStorage.getItem('products'));
+const initialProducts = JSON.parse(localStorage.getItem('products'));
 
 let currentPage = 1;
 const productsPerPage = 10;
@@ -6,13 +7,18 @@ const productsPerPage = 10;
 // Função para renderizar produtos
 function renderProducts() {
     const search = document.getElementById("search").value.toLowerCase();
+    
+    // Filtra produtos habilitados
     const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes(search) ||
-        product.description.toLowerCase().includes(search) ||
-        product.brand.toLowerCase().includes(search) ||
-        product.category.toLowerCase().includes(search)
+        product.enabled = true && (
+            product.name.toLowerCase().includes(search) ||
+            product.description.toLowerCase().includes(search) ||
+            product.brand.toLowerCase().includes(search) ||
+            product.category.toLowerCase().includes(search)
+        )
     );
 
+    
     // Função para verificar o papel do usuário e exibir o botão de Add Product
 function checkUserRole() {
     const loggedInEmail = localStorage.getItem("loggedInEmail");
@@ -56,7 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>${product.name}</h3>
             <p>Brand: ${product.brand}</p>
             <p>Category: ${product.category}</p>
-            <button onclick="viewDetails(${product.id})">View Details</button>`;
+            <button onclick="viewDetails(${product.id})">View Details</button>
+            <button onclick="editProduct(${product.id})">Edit</button>
+            <button onclick="deleteProduct(${product.id})">Delete</button>
+            `;
         
         productTable.appendChild(productCard);
     });
@@ -127,10 +136,16 @@ document.getElementById("prev-page").addEventListener("click", () => {
     renderProducts();
 });
 document.getElementById("logout-btn").addEventListener("click", handleLogout);
+
 document.getElementById("reset-btn").addEventListener("click", () => {
-    currentPage = 1;
-    renderProducts();
+    if (confirm("Reset products to initial state?")) {
+        localStorage.setItem('products', JSON.stringify(initialProducts));
+        products = [...initialProducts];
+        currentPage = 1; // Reinicia para a primeira página
+        renderProducts();
+    }
 });
+
 
 // Adicionando evento para atualizar a renderização quando o filtro ou ordenação mudar
 document.getElementById("search").addEventListener("input", () => {
@@ -153,3 +168,27 @@ document.addEventListener("DOMContentLoaded", () => {
     displayUserData(); // Exibe os dados do usuário
     renderProducts();   // Renderiza os produtos
 });
+
+function editProduct(productId) {
+    // Redireciona para a página de edição do produto
+    window.location.href = `editProduct.html?id=${productId}`;
+}
+
+function deleteProduct(productId) {
+    if (confirm("Are you sure you want to delete this product?")) {
+        const updatedProducts = products.filter(product => product.id !== productId);
+
+        // Atualiza o armazenamento local
+        localStorage.setItem("products", JSON.stringify(updatedProducts));
+
+        // Atualiza a variável global "products"
+        products.length = 0;
+        products.push(...updatedProducts);
+
+        renderProducts(); // Atualiza a interface
+        alert("Product deleted successfully!");
+    }
+}
+
+
+

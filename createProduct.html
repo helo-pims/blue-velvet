@@ -46,7 +46,7 @@
                     <input type="file" id="featured-images" accept=".png" multiple>
                 </li>
                 <li>
-                    <label for="price">List Price:</label>
+                    <label for="price">List Price ($):</label>
                     <input type="number" id="price" placeholder="Enter price" step="0.01">
                 </li>
                 <li>
@@ -64,11 +64,15 @@
                 </li>
                 <li>
                     <label for="dimensions">Dimensions (L x W x H):</label>
-                    <input type="text" id="dimensions" placeholder="Enter dimensions in inches">
+                    <input type="text" id="dimensions" placeholder="Enter dimensions (L x W x H)">
                 </li>
                 <li>
                     <label for="weight">Weight (lbs):</label>
                     <input type="number" id="weight" placeholder="Enter weight in pounds">
+                </li>
+                <li>
+                    <label for="cost">Cost ($):</label>
+                    <input type="number" id="cost" placeholder="Enter product cost" step="0.01">
                 </li>
                 <li>
                     <label for="details">Product Details:</label>
@@ -77,6 +81,7 @@
             </ul>
             <div class="form-actions">
                 <button type="submit">Save Product</button>
+                <button type="button" onclick="location.href='dashboard.html'">Back to Dashboard</button>
                 <button type="reset">Clear Form</button>
             </div>
         </form>
