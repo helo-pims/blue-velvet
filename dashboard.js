@@ -1,5 +1,5 @@
-let products = JSON.parse(localStorage.getItem('products'));
-const initialProducts = JSON.parse(localStorage.getItem('products'));
+let products = JSON.parse(localStorage.getItem('products')) || [];
+const initialProducts = [...products];
 
 let currentPage = 1;
 const productsPerPage = 10;
@@ -10,13 +10,14 @@ function renderProducts() {
     
     // Filtra produtos habilitados
     const filteredProducts = products.filter(product =>
-        product.enabled = true && (
+    product.enabled === true &&  (
             product.name.toLowerCase().includes(search) ||
             product.description.toLowerCase().includes(search) ||
             product.brand.toLowerCase().includes(search) ||
             product.category.toLowerCase().includes(search)
         )
     );
+    
 
     
     // Função para verificar o papel do usuário e exibir o botão de Add Product
@@ -35,6 +36,7 @@ function checkUserRole() {
 // Event listener para redirecionar ao clicar no botão
 document.getElementById("add-product-btn").addEventListener("click", () => {
     window.location.href = "createProduct.html";
+    renderProducts();
 });
 
 // Chamar a função ao carregar a página
@@ -184,6 +186,7 @@ function deleteProduct(productId) {
         // Atualiza a variável global "products"
         products.length = 0;
         products.push(...updatedProducts);
+        products = [...updatedProducts]; 
 
         renderProducts(); // Atualiza a interface
         alert("Product deleted successfully!");

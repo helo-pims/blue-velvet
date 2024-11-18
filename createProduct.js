@@ -1,57 +1,85 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Verifica se o usuário está logado e se tem permissão
+    // Verifica se o usuário está logado e autorizado
     const loggedInEmail = localStorage.getItem("loggedInEmail");
     const loggedInUser = JSON.parse(localStorage.getItem(loggedInEmail));
 
     if (!loggedInUser || (loggedInUser.role !== "admin" && loggedInUser.role !== "editor")) {
-        alert("You do not have permission to create products.");
-        window.location.href = "index.html"; // Redireciona para a página inicial ou login
+        alert("Você não tem permissão para criar produtos.");
+        window.location.href = "index.html"; // Redireciona para login ou página inicial
         return;
     }
 
-    // Adiciona o evento de submit ao formulário
-    document.querySelector(".create-product-form").addEventListener("submit", function (event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
+    // Recupera o formulário
+    const form = document.getElementById("create-product-form");
+    if (!form) {
+        console.error("Formulário não encontrado!");
+        return;
+    }
 
-        // Coleta os dados do formulário
-        const product = {
-            id: getNextProductId(), // Gera um ID único baseado no maior ID existente + 1
-            name: document.getElementById("product-name").value,
-            shortDescription: document.getElementById("short-description").value,
-            fullDescription: document.getElementById("full-description").value,
-            brand: document.getElementById("brand").value,
-            category: document.getElementById("category").value,
-            mainImage: document.getElementById("main-image").files[0]?.name || "",
-            featuredImages: Array.from(document.getElementById("featured-images").files).map(file => file.name),
-            listPrice: parseFloat(document.getElementById("price").value) || 0,
-            discount: parseFloat(document.getElementById("discount").value) || 0,
-            enabled: document.getElementById("visualization").checked,
-            inStock: document.getElementById("stock").checked,
-            dimensions: document.getElementById("dimensions").value,
-            weight: parseFloat(document.getElementById("weight").value) || 0,
-            cost: parseFloat(document.getElementById("cost").value) || 0, // Adicionando custo
-            details: document.getElementById("details").value,
-            creationTime: new Date().toISOString(),
-            updateTime: new Date().toISOString()
+    // Adiciona o evento de submit
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        console.log("Valores do FormData:", Object.fromEntries(formData.entries())); // Depuração
+
+        const newProduct = {
+            id: getNextProductId(),
+            name: formData.get("product-name")?.trim(),
+            shortDescription: formData.get("short-description")?.trim(),
+            fullDescription: formData.get("full-description")?.trim(),
+            brand: formData.get("brand")?.trim(),
+            category: formData.get("category")?.trim(),
+            mainImage: formData.get("main-image") instanceof File && formData.get("main-image").name
+                ? formData.get("main-image").name
+                : "img/Blue Velvet.png", // Imagem padrão se não for fornecida
+            extraImages: formData.get("featured-images") instanceof File && formData.get("featured-images").name
+                ? formData.get("featured-images").name
+                : null,
+            price: parseFloat(formData.get("price")) || null,
+            discount: parseFloat(formData.get("discount")) || null,
+            enabled: formData.get("visualization") === "true",
+            inStock: formData.get("stock") === "true",
+            dimensions: formData.get("dimensions")?.trim() || null,
+            weight: parseFloat(formData.get("weight")) || null,
+            cost: parseFloat(formData.get("cost")) || null,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
         };
 
-        // Atualiza o localStorage com o novo produto
-        const products = JSON.parse(localStorage.getItem("products")) || [];
-        products.push(product);
-        localStorage.setItem("products", JSON.stringify(products));
+        if (!newProduct.name) {
+            alert("O campo de nome do produto é obrigatório.");
+            return;
+        }
 
-        // Redireciona para o dashboard após a criação do produto
-        alert("Product created successfully!");
-        window.location.href = "dashboard.html";
+        // Verifica se o nome do produto é único
+        
+        const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
+        // Verifica se o nome do produto é único
+        const isNameUnique = !existingProducts.some(product => {
+            const existingName = product.name?.trim().toLowerCase();
+            const newName = newProduct.name?.trim().toLowerCase();
+            console.log(`Comparando: ${existingName} com ${newName}`);
+            return existingName === newName;
+        });
+
+        if (!isNameUnique) {
+            alert("Já existe um produto com esse nome. Escolha outro nome.");
+            return;
+        }
+
+        // Adiciona o novo produto à lista
+        existingProducts.push(newProduct);
+        localStorage.setItem("products", JSON.stringify(existingProducts));
+
+        alert("Produto adicionado com sucesso!");
+        form.reset(); // Limpa o formulário
+        window.location.href = "dashboard.html"; // Redireciona para a página de gerenciamento de produtos
     });
 
-    // Função para obter o próximo ID
+    // Função para calcular o próximo ID
     function getNextProductId() {
         const products = JSON.parse(localStorage.getItem("products")) || [];
-        if (products.length === 0) return 1; // Se não houver produtos, comece com ID 1
-
-        // Encontra o maior ID existente e retorna +1
-        const maxId = Math.max(...products.map(product => product.id));
-        return maxId + 1;
+        return products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
     }
 });
