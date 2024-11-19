@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!loggedInUser || (loggedInUser.role !== "admin" && loggedInUser.role !== "editor")) {
         alert("Você não tem permissão para criar produtos.");
-        window.location.href = "index.html"; // Redireciona para login ou página inicial
+        window.location.href = "dashboard.html"; // Redireciona para login ou página inicial
         return;
     }
 
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             dimensions: formData.get("dimensions")?.trim() || null,
             weight: parseFloat(formData.get("weight")) || null,
             cost: parseFloat(formData.get("cost")) || null,
+            details: formData.get("details")?.trim(),
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };
