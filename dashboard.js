@@ -12,7 +12,7 @@ function renderProducts() {
     const filteredProducts = products.filter(product =>
     product.enabled === true &&  (
             product.name.toLowerCase().includes(search) ||
-            product.description.toLowerCase().includes(search) ||
+            product.shortDescription.toLowerCase().includes(search) ||
             product.brand.toLowerCase().includes(search) ||
             product.category.toLowerCase().includes(search)
         )
@@ -27,7 +27,7 @@ function checkUserRole() {
     if (loggedInEmail) {
         const user = JSON.parse(localStorage.getItem(loggedInEmail));
 
-        if (user && user.role === "administrator") {
+        if (user && user.role === "admin") {
             document.getElementById("add-product-btn").style.display = "inline-block";
         }
     }
@@ -39,12 +39,16 @@ document.getElementById("add-product-btn").addEventListener("click", () => {
     renderProducts();
 });
 
+
+
 // Chamar a função ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     displayUserData();  // Exibe os dados do usuário
     renderProducts();   // Renderiza os produtos
     checkUserRole();    // Checa o papel do usuário
 });
+
+
 
     // Ordena os produtos
     const sortedProducts = sortProducts(filteredProducts);
@@ -60,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const productCard = document.createElement("div");
         productCard.className = "product-card";
         productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.mainImage}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>Brand: ${product.brand}</p>
             <p>Category: ${product.category}</p>
