@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function editProduct(productId) {
     // Redireciona para a página de edição do produto
-    window.location.href = `editProduct.html?id=${productId}`;
+    window.location.href = `edit.html?id=${productId}`;
 }
 
 function deleteProduct(productId) {

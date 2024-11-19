@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="createProduct.css">
+</head>
+<body>
+    <div class="create-product-container">
+        <div class="create-product-header">
+            <h1>
+                <img src="img/icon.png" alt="Icon" class="header-icon">
+                Edit Product
+            </h1>
+        </div>
+        
+        <form id="edit-product-form" class="create-product-form">
+            <input type="hidden" id="product-id" name="product-id">
+            <ul class="form-list">
+                <!-- Reaproveita os mesmos campos do createProduct -->
+                <!-- Mantenha o mesmo ID e name para cada campo -->
+                <li>
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" name="product-name" required>
+                </li>
+                <li>
+                    <label for="short-description">Short Description:</label>
+                    <textarea id="short-description" name="short-description"></textarea>
+                </li>
+                <li>
+                    <label for="full-description">Full Description:</label>
+                    <textarea id="full-description" name="full-description"></textarea>
+                </li>
+                <li>
+                    <label for="brand">Brand:</label>
+                    <input type="text" id="brand" name="brand">
+                </li>
+                <li>
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category">
+                </li>
+                <li>
+                    <label for="price">List Price ($):</label>
+                    <input type="number" id="price" name="price" step="0.01">
+                </li>
+                <li>
+                    <label for="discount">Discount (%):</label>
+                    <input type="number" id="discount" name="discount" step="0.01">
+                </li>
+                <li>
+                    <div class="checkbox-group">
+                        <label for="visualization">Activated</label>
+                        <select id="visualization" name="visualization">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                        <label for="stock">In Stock:</label>
+                        <input type="checkbox" id="stock" name="stock" value="true">
+                    </div>
+                </li>
+                <li>
+                    <label for="dimensions">Dimensions (L x W x H):</label>
+                    <input type="text" id="dimensions" name="dimensions">
+                </li>
+                <li>
+                    <label for="weight">Weight (lbs):</label>
+                    <input type="number" id="weight" name="weight">
+                </li>
+                <li>
+                    <label for="cost">Cost ($):</label>
+                    <input type="number" id="cost" name="cost" step="0.01">
+                </li>
+                <li>
+                    <label for="details">Product Details:</label>
+                    <textarea id="details" name="details"></textarea>
+                </li>
+            </ul>
+            <div class="form-actions">
+                <button type="submit">Save Changes</button>
+                <button type="button" onclick="location.href='dashboard.html'">Back to Dashboard</button>
+            </div>
+        </form>
+    </div>
+    <script src="edit.js"></script>
+</body>
+</html>
