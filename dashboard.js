@@ -9,14 +9,18 @@ function renderProducts() {
     const search = document.getElementById("search").value.toLowerCase();
     
     // Filtra produtos habilitados
-    const filteredProducts = products.filter(product =>
+   /* const filteredProducts = products.filter(product =>
     product.enabled === true &&  (
             product.name.toLowerCase().includes(search) ||
             product.shortDescription.toLowerCase().includes(search) ||
             product.brand.toLowerCase().includes(search) ||
             product.category.toLowerCase().includes(search)
         )
+    );*/
+    const filteredProducts = products.filter(product =>
+        product.enabled === true && product.name.toLowerCase().includes(search)
     );
+    
     
 
     
@@ -107,8 +111,13 @@ function handleLogout() {
 
 // Função para visualizar detalhes do produto
 function viewDetails(productId) {
-    alert(`Viewing details for product ID: ${productId}`);
+    // Salva o ID do produto selecionado no localStorage
+    localStorage.setItem("selectedProductId", productId);
+
+    // Abre a página de detalhes em uma nova aba ou janela
+    window.open("details.html", "_blank", "width=600,height=700,scrollbars=yes,resizable=yes");
 }
+
 
 // Função para exibir o nome de usuário e o papel
 function displayUserData() {
