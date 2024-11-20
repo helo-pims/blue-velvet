@@ -10,42 +10,50 @@
     <div class="dashboard-container">
         <!-- Header -->
         <header class="dashboard-header">
-            <h1>Product Management Dashboard</h1>
-            <button id="add-product-btn">Add Product</button>
-            <p>Welcome, <span id="username"></span> (<span id="role"></span>)</p>
+            <div class="logo">
+                <img src="img/Blue Velvet.png" alt="Logo" class="logo-img">
+                <span class="logo-text">Product Dashboard Management</span>
+            </div>
+            <div class="welcome-container">
+                <p class="welcome-text">WELCOME</p>
+                <p class="role-text"><span id="username"></span> (<span id="role"></span>)</p>
+            </div>
             <button id="logout-btn">Logout</button>
         </header>
         
         <!-- Product List -->
         <section class="product-list">
-            <div class="search-bar">
-                <input type="text" id="search" placeholder="Search by name, description, brand, or category">
-                <button id="reset-btn">Reset Product List</button>
+            <div class="action-bar">
+                <button id="add-product-btn">Add Product</button>
+                <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search by name, description, brand, or category">
+                    <button id="reset-btn">Reset Product List</button>
+                </div>
+                <div class="sort-options">
+                    <select id="sort-by">
+                        <option value="name">Sort by Name</option>
+                        <option value="id">Sort by ID</option>
+                        <option value="brand">Sort by Brand</option>
+                        <option value="category">Sort by Category</option>
+                    </select>
+                    <select id="order">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </div>
             </div>
-            <div class="sort-options">
-                <select id="sort-by">
-                    <option value="name">Sort by Name</option>
-                    <option value="id">Sort by ID</option>
-                    <option value="brand">Sort by Brand</option>
-                    <option value="category">Sort by Category</option>
-                </select>
-                <select id="order">
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                </select>
-            </div>
-
-
-            <div id="product-table" class="product-table"></div> <!-- Products will be displayed here dynamically -->
+            <div id="product-table" class="product-table"></div>
             <div class="pagination">
                 <button id="prev-page" disabled>Previous</button>
                 <span id="page-number">Page 1</span>
                 <button id="next-page">Next</button>
             </div>
-
-            
         </section>
     </div>
+</body>
+</html>
+
+
 
     <!-- Modal for Product Details -->
 <div id="product-modal" class="modal">
