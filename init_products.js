@@ -6,7 +6,7 @@ const products = [
         fullDescription: "teste",
         brand: "Harmony Instruments", 
         category: "Guitars", 
-        mainImage: "img/image2.jpg",
+        mainImage: "img/bass-blaster.png",
         extraImages: null,
         price: null,
         discount: null,

@@ -8,15 +8,7 @@ const productsPerPage = 10;
 function renderProducts() {
     const search = document.getElementById("search").value.toLowerCase();
     
-    // Filtra produtos habilitados
-   /* const filteredProducts = products.filter(product =>
-    product.enabled === true &&  (
-            product.name.toLowerCase().includes(search) ||
-            product.shortDescription.toLowerCase().includes(search) ||
-            product.brand.toLowerCase().includes(search) ||
-            product.category.toLowerCase().includes(search)
-        )
-    );*/
+    
     const filteredProducts = products.filter(product =>
         product.enabled === true && product.name.toLowerCase().includes(search)
     );
@@ -66,16 +58,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     productsToDisplay.forEach(product => {
         const productCard = document.createElement("div");
-        productCard.className = "product-card";
+        productCard.className = "flip-card"; // Adiciona a classe flip-card
+        
         productCard.innerHTML = `
-            <img src="${product.mainImage}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>Brand: ${product.brand}</p>
-            <p>Category: ${product.category}</p>
-            <button onclick="viewDetails(${product.id})">View Details</button>
-            <button onclick="editProduct(${product.id})">Edit</button>
-            <button onclick="deleteProduct(${product.id})">Delete</button>
-            `;
+            <div class="flip-card-inner">
+                <!-- Frente do cartão -->
+                <div class="flip-card-front">
+                    <div class="image-placeholder">
+                        <img src="${product.mainImage}" alt="${product.name}" />
+                    </div>
+                    <div class="title">${product.name}</div>
+                </div>
+                <!-- Verso do cartão -->
+                <div class="flip-card-back">
+                    <div class="back-title">Product Details</div>
+                    <div class="info-text">
+                        <p><strong>Brand:</strong> ${product.brand}</p>
+                        <p><strong>Category:</strong> ${product.category}</p>
+                        <button onclick="viewDetails(${product.id})">View Details</button>
+                        <button onclick="editProduct(${product.id})">Edit</button>
+                        <button onclick="deleteProduct(${product.id})">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `;
         
         productTable.appendChild(productCard);
     });
@@ -109,15 +115,7 @@ function handleLogout() {
     window.location.href = "index.html"; // Redireciona para index.html ao fazer logout
 }
 
-// Função para visualizar detalhes do produto
-/*function viewDetails(productId) {
-    // Salva o ID do produto selecionado no localStorage
-    localStorage.setItem("selectedProductId", productId);
 
-    const url = `details.html?id=${productId}`;
-    window.location.href = url; // Redireciona na mesma aba
-}
-*/
 
 // Exibe o modal
 function viewDetails(productId) {

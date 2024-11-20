@@ -29,22 +29,30 @@
         <!-- Product List -->
         <section class="product-list">
             <div class="action-bar">
-                <button id="add-product-btn">Add Product</button>
-                <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search by name, description, brand, or category">
-                    <button id="reset-btn">Reset Product List</button>
-                </div>
-                <div class="sort-options">
-                    <select id="sort-by">
-                        <option value="name">Sort by Name</option>
-                        <option value="id">Sort by ID</option>
-                        <option value="brand">Sort by Brand</option>
-                        <option value="category">Sort by Category</option>
-                    </select>
-                    <select id="order">
-                        <option value="asc">Ascending</option>
-                        <option value="desc">Descending</option>
-                    </select>
+               
+
+                <!-- Search Bar and Sorting -->
+                <div class="search-section">
+                    <div class="container">
+                        <div class="search-container"> 
+                            <input class="input" type="text" id="search" placeholder="Search by name, description, brand, or category">
+                            <img src="img/search.png" class="search__icon" alt="Search Icon">
+                        </div>
+                    </div>
+                    <div class="sort-options">
+                        <select id="sort-by">
+                            <option value="name">Sort by Name</option>
+                            <option value="id">Sort by ID</option>
+                            <option value="brand">Sort by Brand</option>
+                            <option value="category">Sort by Category</option>
+                        </select>
+                        <select id="order">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                    </div>
+                    <button class='reset-btn'id="reset-btn"><img src="img/rotate.png" alt=""></button>
+                    <button class= 'add-product-btn'id="add-product-btn"><img src="img/plus.png" alt=""></button>
                 </div>
             </div>
             <div id="product-table" class="product-table"></div>
@@ -56,7 +64,7 @@
         </section>
     </div>
 </body>
-
+</html>
 
 
 
