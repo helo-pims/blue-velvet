@@ -9,9 +9,9 @@
 body {
     font-family: 'Arial', sans-serif;
     background-image: url('img/background.png'); /* Substitua pelo caminho da sua imagem */
-    background-size: cover; /* A imagem cobre toda a tela */
-    background-repeat: no-repeat; /* Impede que a imagem se repita */
-    background-position: center; /* Centraliza a imagem */
+    /*background-size: cover; /* A imagem cobre toda a tela */
+    /*background-repeat: no-repeat; /* Impede que a imagem se repita */
+    /*background-position: center; /* Centraliza a imagem */
     color: #1a1919; /* Cor de texto padrão */
     display: flex;
     justify-content: center;
