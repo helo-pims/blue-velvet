@@ -257,16 +257,77 @@ body {
     display: none;
 }
 
+/* Ajustes no estilo do modal */
 .modal-content {
     background-color: white;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    overflow: hidden;
+    text-align: left; /* Alinhamento padrão */
 }
+
+/* Ajustes na imagem do modal */
+#modal-product-image {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto 20px auto; 
+    border-radius: 8px; 
+    object-fit: contain; /* Garante que a imagem mantenha proporções */
+    max-height: 300px; /* Limita a altura máxima */
+}
+
+/* Estilo para conteúdo do modal */
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Quebra palavras longas */
+}
+
+.modal-content p {
+    margin: 5px 0;
+    font-size: 16px;
+    line-height: 1.4;
+    word-wrap: break-word; /* Quebra palavras longas */
+}
+
+/* Estilo para listas ou detalhes em bloco */
+.modal-content span {
+    display: block;
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Evita estouro de texto */
+}
+
+/* Botão de fechar */
+.close-btn {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+/* Estilo para modal em dispositivos menores */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        padding: 15px;
+        font-size: 14px;
+    }
+    #modal-product-image {
+        max-height: 200px;
+    }
+}
+
 
 .close-btn {
     float: right;
