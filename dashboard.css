@@ -76,6 +76,34 @@ body {
     border: 2px solid #eae0f5;
 }
 
+.welcome-container {
+    position: relative; /* Necessário para posicionamento absoluto do .role-text */
+}
+
+.role-text {
+    position: absolute;
+    top: 100%; /* Coloca o texto abaixo de .welcome-text inicialmente */
+    left: 0;
+    opacity: 0; /* Torna invisível inicialmente */
+    transform: translateY(10px); /* Move o texto ligeiramente para baixo */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Suaviza as transições */
+    font-size: 1em;
+    color: #6a11cb;
+}
+
+.welcome-container:hover .role-text {
+    opacity: 1; /* Torna visível no hover */
+    transform: translateY(0); /* Move para a posição original */
+}
+
+.welcome-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    color:#6a11cb;
+    margin: 0;
+    
+    
+}
 
 /* Barra de pesquisa */
 .search-bar {
