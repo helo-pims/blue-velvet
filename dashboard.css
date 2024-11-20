@@ -245,94 +245,114 @@ body {
     }
 }
 
+/* Estilos do Modal */
 .modal {
-    position: fixed;
-    z-index: 1000;
+    display: none; /* Oculto por padrão */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1000; /* Fica acima de outros elementos */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: none;
+    width: 100%; /* Largura total da tela */
+    height: 100%; /* Altura total da tela */
+    overflow: auto; /* Permite rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
 }
 
-/* Ajustes no estilo do modal */
+/* Conteúdo do Modal */
 .modal-content {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: left; /* Alinhamento padrão */
+    background-color: white; /* Fundo branco */
+    margin: auto; /* Centraliza horizontalmente */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    max-width: 800px; /* Largura máxima do modal */
+    height: auto; /* Altura automática para acomodar o conteúdo */
+    max-height: 90vh; /* Altura máxima do modal (90% da altura da tela) */
+    overflow-y: auto; /* Permite rolagem vertical se necessário */
+    position: relative; /* Para posicionamento interno, se necessário */
 }
 
-/* Ajustes na imagem do modal */
+/* Botão de fechar estilizado */
+.button {
+    position: absolute; /* Posicionado no topo do modal */
+    top: 10px; /* Espaçamento do topo */
+    right: 10px; /* Espaçamento da direita */
+    width: 2.5em; /* Largura reduzida do botão */
+    height: 2.5em; /* Altura reduzida do botão */
+    border: none; /* Remove bordas */
+    background: rgba(180, 83, 107, 0.11); /* Fundo transparente */
+    border-radius: 20%; /* Botão circular */
+    transition: background 0.5s; /* Animação na mudança de cor */
+    cursor: pointer; /* Cursor pointer para indicar clique */
+}
+
+/* Linhas cruzadas no botão */
+.X,
+.Y {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.5em; /* Largura ajustada das linhas */
+    height: 1.5px; /* Espessura das linhas */
+    background-color: #000; /* Cor das linhas */
+    transform: translate(-50%, -50%) rotate(45deg); /* Posição e rotação padrão */
+}
+
+.Y {
+    transform: translate(-50%, -50%) rotate(-45deg); /* Rotação oposta */
+}
+
+/* Efeitos ao passar o mouse */
+.button:hover {
+    background-color: rgb(211, 21, 21); /* Cor ao passar o mouse */
+}
+
+.button:active {
+    background-color: rgb(130, 0, 0); /* Cor ao clicar */
+}
+
+
+
+
+
+/* Imagem do produto no modal */
 #modal-product-image {
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
-    margin: 0 auto 20px auto; 
-    border-radius: 8px; 
-    object-fit: contain; /* Garante que a imagem mantenha proporções */
-    max-height: 300px; /* Limita a altura máxima */
+    width: 100%; /* Largura total do modal */
+    height: auto; /* Mantém a proporção da imagem */
+    max-height: 250px; /* Altura máxima da imagem (ajustada para não interferir no modal) */
+    object-fit: cover; /* Cobre o espaço sem distorcer a imagem */
+    border-radius: 8px; /* Bordas levemente arredondadas na imagem */
 }
 
-/* Estilo para conteúdo do modal */
+/* Estilo dos textos dentro do modal */
 .modal-content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    word-wrap: break-word; /* Quebra palavras longas */
+    font-size: 24px; /* Tamanho da fonte do título */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
 }
 
 .modal-content p {
-    margin: 5px 0;
-    font-size: 16px;
-    line-height: 1.4;
-    word-wrap: break-word; /* Quebra palavras longas */
+    font-size: 16px; /* Tamanho da fonte dos parágrafos */
+    margin-bottom: 10px; /* Espaçamento abaixo dos parágrafos */
 }
 
-/* Estilo para listas ou detalhes em bloco */
-.modal-content span {
-    display: block;
-    margin-bottom: 10px;
-    word-wrap: break-word; /* Evita estouro de texto */
-}
-
-/* Botão de fechar */
-.close-btn {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #aaa;
-}
-
-.close-btn:hover {
-    color: #333;
+/* Estilos para as informações do produto em destaque (negrito) */
+.modal-content strong {
+    color: #2234aa; /* Cor azul escuro para os rótulos em negrito */
 }
 
 /* Estilo para modal em dispositivos menores */
 @media (max-width: 768px) {
     .modal-content {
-        width: 90%;
+        width: 90%; /* Largura maior em dispositivos menores para melhor visualização */
         padding: 15px;
         font-size: 14px;
+        max-height: 80vh; /* Ajusta a altura máxima em dispositivos menores*/
+        overflow-y: auto; /* Permite rolagem vertical se necessário em telas pequenas*/
     }
+    
     #modal-product-image {
-        max-height: 200px;
+        max-height: 200px; /* Altura máxima da imagem em dispositivos menores*/
+        border-radius: 8px; /* Mantém bordas arredondadas na imagem*/
     }
-}
-
-
-.close-btn {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
 }
 
