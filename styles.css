@@ -1,4 +1,4 @@
-/* Reset básico para garantir que o layout seja consistente */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -8,24 +8,31 @@
 /* Corpo da página */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #DBE9FA; /* Fundo azul suave */
+    background-image: url('img/background.png'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover; /* A imagem cobre toda a tela */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    background-position: center; /* Centraliza a imagem */
     color: #1a1919; /* Cor de texto padrão */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    text-align: center;
+    margin: 0;
 }
 
-/* Container principal do formulário */
+/* Container principal */
 .container {
-    background-color: #FFFFFF; /* Fundo branco para o formulário */
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    max-width: 400px;
-    width: 100%;
+    max-width: 400px; /* Define uma largura máxima consistente */
+    width: 100%; /* Ajusta a largura para dispositivos menores */
+    margin: 15px auto; /* Centraliza o container horizontalmente */
+    background: #F8F9FD; /* Fundo suave */
+    background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+    border-radius: 40px;
+    padding: 25px 35px;
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
 }
+
 
 /* Logo */
 .logo-container {
@@ -33,115 +40,136 @@ body {
 }
 
 .logo {
-    width: 200px; 
+    width: 180px;
     height: auto;
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto;
 }
 
-/* Título principal */
+
+
+
+/* Títulos */
 h2 {
     font-size: 28px;
-    color: #2234aa; /* Azul escuro */
-    margin-bottom: 20px;
-    font-weight: 700;
+    color: rgb(16, 137, 211);
+    font-weight: 900;
+    margin: 0 auto 20px; /* Centraliza horizontalmente e mantém a margem inferior */
+    text-align: center; /* Centraliza o texto */
 }
 
 h3 {
     font-size: 25px;
-    color: #7a137a; /* ROXO escuro */
-    margin-bottom: px;
+    color: #7A137A;
     font-weight: 700;
+    margin-bottom: 10px;
 }
 
-.error-message{
-    font-size:15px;
-    margin: 8px;
-    color:#ac0b21
-
-
-
-}
-
-/* Grupo de entradas (inputs) */
+/* Inputs */
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: left;
-    font-size: 16px;
 }
 
-/* Estilo para os inputs */
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: rgb(16, 137, 211);
+}
+
+/* Inputs */
 input[type="email"], input[type="password"], input[type="text"], select {
     width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 2px solid #4462E1; /* Bordas azul claro */
-    border-radius: 8px;
-    margin-top: 5px;
-    background-color: #EDF3FD; /* Azul bem suave */
-    color: #1a1919;
+    padding: 15px 20px;
+    font-size: 14px;
+    border: 2px solid #ccc; /* Cor padrão da borda */
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: rgba(207, 240, 255, 0.8) 0px 10px 10px -5px;
     outline: none;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
 }
 
-/* Efeito ao focar nos inputs */
+/* Efeito de foco com animação mais forte */
 input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, select:focus {
-    border: 2px outset #4462e1; /* Azul mais escuro ao focar */
-    background-color: #fff;
-    animation-duration: 2s;
+    border-color: #0056b3; /* Cor da borda ao focar (azul mais forte) */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Sombra azul ao focar */
 }
 
-input[type="email"], input[type="password"], input[type="text"]{
-    border: 2px solid #95cfff;
-    background-color: #fff;
-}
 
-/* Estilo do botão */
+/* Botão principal */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
     font-size: 16px;
-    background-color: #4067d0; /* Azul claro */
-    color: #fff;
+    font-weight: bold;
+    background: linear-gradient(45deg, #1089D3 0%, #12B1D1 100%);
+    color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease-in-out;
+    margin-top: 4px;
+    margin-bottom: 12px;
 }
 
-/* Efeito ao passar o mouse sobre o botão */
 button:hover {
-    background-color: #2234aa; /* Azul escuro */
+    transform: scale(1.03);
+    box-shadow: rgba(133, 189, 215, 0.9) 0px 23px 10px -20px;
+    background: linear-gradient(45deg, #2539BB 0%, #0056b3 100%);
 }
 
-/* Modal de erro */
+button:active {
+    transform: scale(0.95);
+    box-shadow: rgba(133, 189, 215, 0.9) 0px 15px 10px -10px;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #0099FF;
+    font-size: 15px;
+}
+
+a:hover {
+    text-decoration: underline;
+    color:#2539BB
+}
+
+/* Erro */
+.error-message {
+    font-size: 12px;
+    color: #AC0B21;
+    margin: 8px 0;
+}
+
+/* Modal */
 .modal {
-    display: none; /* Esconde o modal inicialmente */
+    display: none;
     position: fixed;
-    z-index: 1; /* Fica em cima de tudo */
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
+    background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
 }
 
-/* Conteúdo do modal */
 .modal-content {
-    background-color: #fff;
+    background-color: #FFF;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 300px;
     text-align: center;
-    position: relative; /* Para posicionar o botão de fechar */
+    box-shadow: rgba(133, 189, 215, 0.9) 0px 20px 10px -10px;
 }
 
-/* Botão de fechar */
 .close-btn {
-    color: #aaa;
-    font-size: 28px;
+    color: #AAA;
+    font-size: 20px;
     font-weight: bold;
     position: absolute;
     top: 10px;
@@ -149,28 +177,6 @@ button:hover {
     cursor: pointer;
 }
 
-/* Botão de fechar no hover */
-.close-btn:hover,
-.close-btn:focus {
-    color: #2539bb;
-    text-decoration: none;
-    cursor: pointer;
+.close-btn:hover {
+    color: #2539BB;
 }
-
-
-/* Estilo do botão no modal */
-#close-modal-btn {
-    background-color: #2539bb; /* Azul escuro */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 18px; /* Adiciona um espaço entre o texto e o botão de fechar */
-}
-
-#close-modal-btn:hover {
-    background-color: #4067d0; /* Azul claro */
-}
-
