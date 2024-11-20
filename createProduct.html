@@ -23,67 +23,83 @@
                 </li>
                 <li>
                     <label for="short-description">Short Description:</label>
-                    <textarea id="short-description" name="short-description" placeholder="Enter a short description"></textarea>                </li>
+                    <textarea id="short-description" name="short-description" placeholder="Enter a short description"></textarea>
+                </li>
                 <li>
                     <label for="full-description">Full Description:</label>
-                    <textarea id="full-description" name="full-description" placeholder="Enter full description"></textarea>                </li>
+                    <textarea id="full-description" name="full-description" placeholder="Enter full description"></textarea>
+                </li>
                 <li>
                     <label for="brand">Brand:</label>
                     <input type="text" id="brand" name="brand" placeholder="Enter brand name">
                 </li>
                 <li>
                     <label for="category">Category:</label>
-                    <input type="text" id="category" name="category" placeholder="Enter Category">                </li>
+                    <input type="text" id="category" name="category" placeholder="Enter Category">
+                </li>
                 <li>
                     <label for="main-image">Main Image:</label>
-                    <input type="file" id="main-image" name="main-image" accept=".png">                </li>
+                    <input type="file" id="main-image-input" name="main-image" accept=".png">
+                    <div class="image-preview">
+                        <img id="main-image-preview" src="img/Blue Velvet.png" alt="Preview of the main image" style="max-width: 200px; margin-top: 10px;">
+                    </div>
+                </li>
                 <li>
                     <label for="featured-images">Featured Images:</label>
-                    <input type="file" id="featured-images" name="featured-images" accept=".png" multiple>                </li>
+                    <input type="file" id="featured-images" name="featured-images" accept=".png" multiple>
+                </li>
                 <li>
                     <label for="price">List Price ($):</label>
-                    <input type="number" id="price" name="price" placeholder="Enter price" step="0.01">                </li>
+                    <input type="number" id="price" name="price" placeholder="Enter price" step="0.01">
+                </li>
                 <li>
                     <label for="discount">Discount (%):</label>
-                    <input type="number" id="discount" name="discount" placeholder="Enter discount percentage" step="0.01">                </li>
+                    <input type="number" id="discount" name="discount" placeholder="Enter discount percentage" step="0.01">
+                </li>
                 <li>
                     <div class="checkbox-group">
-
                         <label for="visualization">Activated</label>
-                            <select id="visualization" name="visualization">
+                        <select id="visualization" name="visualization">
                             <option value="true">Yes</option>
                             <option value="false">No</option>
-                            </select>
-                            
+                        </select>
                         <label for="stock">In Stock:</label>
                         <select id="stock" name="stock">
                             <option value="true">Yes</option>
                             <option value="false">No</option>
-                            </select>
+                        </select>
                     </div>
-                    
                 </li>
                 <li>
                     <label for="dimensions">Dimensions (L x W x H):</label>
-                    <input type="text" id="dimensions" name="dimensions" placeholder="Enter dimensions (L x W x H)">                </li>
+                    <input type="text" id="dimensions" name="dimensions" placeholder="Enter dimensions (L x W x H)">
+                </li>
                 <li>
                     <label for="weight">Weight (lbs):</label>
-                    <input type="number" id="weight" name="weight" placeholder="Enter weight in pounds">                </li>
+                    <input type="number" id="weight" name="weight" placeholder="Enter weight in pounds">
+                </li>
                 <li>
                     <label for="cost">Cost ($):</label>
-                    <input type="number" id="cost" name="cost" placeholder="Enter product cost" step="0.01">                </li>
+                    <input type="number" id="cost" name="cost" placeholder="Enter product cost" step="0.01">
+                </li>
                 <li>
                     <label for="details">Product Details:</label>
-                    <textarea id="details" name="details" placeholder="Enter product details (e.g., track list)"></textarea>                </li>
+                    <textarea id="details" name="details" placeholder="Enter product details (e.g., track list)"></textarea>
+                </li>
             </ul>
             <div class="form-actions">
                 <button type="submit">Save Product</button>
                 <button type="button" onclick="location.href='dashboard.html'">Back to Dashboard</button>
-                <button type="reset">Clear Form</button>
+                <button type="reset" onclick="resetPreview()">Clear Form</button>
             </div>
         </form>
     </div>
+    <script>
+        // Função para resetar a pré-visualização
+        function resetPreview() {
+            document.getElementById("main-image-preview").src = "img/Blue Velvet.png";
+        }
+    </script>
     <script src="createProduct.js"></script>
-
 </body>
 </html>

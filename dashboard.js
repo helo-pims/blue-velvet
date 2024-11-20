@@ -110,13 +110,76 @@ function handleLogout() {
 }
 
 // Função para visualizar detalhes do produto
-function viewDetails(productId) {
+/*function viewDetails(productId) {
     // Salva o ID do produto selecionado no localStorage
     localStorage.setItem("selectedProductId", productId);
 
-    // Abre a página de detalhes em uma nova aba ou janela
-    window.open("details.html", "_blank", "width=600,height=700,scrollbars=yes,resizable=yes");
+    const url = `details.html?id=${productId}`;
+    window.location.href = url; // Redireciona na mesma aba
 }
+*/
+
+// Exibe o modal
+function viewDetails(productId) {
+    const product = products.find(p => p.id === productId);
+
+    if (!product) {
+        alert("Product not found.");
+        return;
+    }
+
+    // Basic fields
+    document.getElementById("modal-product-image").src = product.mainImage || "img/placeholder.png";
+    document.getElementById("modal-product-name").textContent = product.name || "No Name";
+    document.getElementById("modal-product-short-description").textContent = product.shortDescription || "No short description.";
+    document.getElementById("modal-product-full-description").textContent = product.fullDescription || "No full description.";
+    document.getElementById("modal-product-brand").textContent = product.brand || "Not specified";
+    document.getElementById("modal-product-category").textContent = product.category || "Not specified";
+
+    // Price and discount
+    const price = product.price ? `$${product.price.toFixed(2)}` : "$0.00";
+    const discount = product.discount ? `${product.discount.toFixed(2)}%` : "No discount";
+    document.getElementById("modal-product-price").textContent = price;
+    document.getElementById("modal-product-discount").textContent = discount;
+
+    // Stock and enabled status
+    document.getElementById("modal-product-in-stock").textContent = product.inStock ? "Yes" : "No";
+    document.getElementById("modal-product-enabled").textContent = product.enabled ? "Yes" : "No";
+
+    // Dimensions and weight
+    document.getElementById("modal-product-dimensions").textContent = product.dimensions || "Not specified";
+    document.getElementById("modal-product-weight").textContent = product.weight ? `${product.weight} kg` : "Not specified";
+
+    // Cost and additional details
+    const cost = product.cost ? `$${product.cost.toFixed(2)}` : "Not specified";
+    document.getElementById("modal-product-cost").textContent = cost;
+    document.getElementById("modal-product-details").textContent = product.details || "No additional details.";
+
+    // Timestamps
+    document.getElementById("modal-product-created-at").textContent = product.createdAt || "Unknown";
+    document.getElementById("modal-product-updated-at").textContent = product.updatedAt || "Unknown";
+
+    // Show the modal
+    document.getElementById("product-modal").style.display = "flex";
+}
+
+
+// Fecha o modal
+function closeModal() {
+    document.getElementById("product-modal").style.display = "none";
+}
+
+// Adiciona evento ao botão de fechar
+document.getElementById("close-modal-btn").addEventListener("click", closeModal);
+
+// Fecha o modal ao clicar fora do conteúdo
+window.addEventListener("click", (e) => {
+    const modal = document.getElementById("product-modal");
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
 
 
 // Função para exibir o nome de usuário e o papel
@@ -205,6 +268,5 @@ function deleteProduct(productId) {
         alert("Product deleted successfully!");
     }
 }
-
 
 
