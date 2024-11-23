@@ -21,7 +21,13 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     // Verifica se o usuário existe e se a senha está correta
     if (user && user.password === password) {
         localStorage.setItem("loggedInEmail", email); // Armazena o email do usuário logado
-        window.location.href = "dashboard.html"; // Redireciona para o dashboard
+
+        // Redireciona baseado no role
+        if (user.role === 'editor') {
+            window.location.href = "datadashboard.html"; // Página para editores
+        } else {
+            window.location.href = "dashboard.html"; // Página padrão
+        }
     } else {
         modalMessage.textContent = "Email ou senha incorretos. Por favor, tente novamente.";
         errorModal.style.display = 'flex'; // Exibe o modal de erro
