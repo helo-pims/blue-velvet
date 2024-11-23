@@ -7,8 +7,9 @@
 
 /* Corpo da página */
 body {
+    font-size: clamp(14px, 2.5vw, 16px);
     font-family: 'Arial', sans-serif;
-    background-color: #DBE9FA; /* Fundo azul suave */
+    background-color: #e9f1fa; 
     color: #1a1919; /* Cor de texto padrão */
     padding: 20px;
 }
@@ -37,6 +38,7 @@ body {
 }
 
 .create-product-header h1 {
+    font-size: clamp(20px, 5vw, 24px);
     font-size: 24px;
     color: #2234aa; /* Azul escuro */
 }
@@ -79,7 +81,6 @@ body {
     width: 100%; /* Largura total */
     max-width: 100%; /* Largura máxima total */
 }
-
 /* Botões de ação */
 .form-actions {
     display: flex;
@@ -89,16 +90,86 @@ body {
 
 .form-actions button {
     padding: 10px 20px;
-    background-color: #4067d0; /* Azul claro */
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
 }
 
-.form-actions button:hover {
-    background-color: #2234aa; /* Azul escuro */
+/* Botão Data Dashboard */
+.btn-dashboard {
+    background-color: #4067d0; /* Azul claro */
 }
+
+.btn-dashboard:hover {
+    background-color: #142697; /* Azul escuro */
+}
+
+/* Botão Clear Form */
+.btn-clear {
+    background-color: #d04f4f; /* Vermelho claro */
+}
+
+.btn-clear:hover {
+    background-color: #970707; /* Vermelho escuro */
+}
+
+/* Botão Save Product */
+.btn-save {
+    background-color: #4caf50; /* Verde claro */
+}
+
+.btn-save:hover {
+    background-color: #2e7d32; /* Verde escuro */
+}
+
+
+
+
+/* Inputs e Textareas com bordas azul-escuro ao foco */
+.create-product-form input:focus,
+.create-product-form textarea:focus,
+.create-product-form select:focus {
+    border-color: #2234aa; /* Azul escuro */
+    outline: none; /* Remove o contorno padrão do navegador */
+    box-shadow: 0 0 5px rgba(34, 52, 170, 0.5); /* Adiciona um leve efeito de brilho */
+    width: 100%; 
+}
+
+.image-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-preview img {
+    max-width: 200px;
+    max-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.image-preview .remove-button {
+    display: block;
+    margin: 5px auto;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.image-preview .remove-button:hover {
+    background-color: #d32f2f;
+}
+
+
+
 
 /* Responsividade */
 @media (max-width: 768px) {

@@ -39,15 +39,20 @@
                 </li>
                 <li>
                     <label for="main-image">Main Image:</label>
-                    <input type="file" id="main-image-input" name="main-image" accept=".png">
-                    <div class="image-preview">
-                        <img id="main-image-preview" src="img/Blue Velvet.png" alt="Preview of the main image" style="max-width: 200px; margin-top: 10px;">
-                    </div>
+                    <input type="file" id="main-image" name="main-image" accept=".png">
+                    <div id="main-image-preview" class="image-preview" ></div>
+                    
                 </li>
+                
                 <li>
                     <label for="featured-images">Featured Images:</label>
                     <input type="file" id="featured-images" name="featured-images" accept=".png" multiple>
+                    <div id="featured-images-preview" class="image-preview"></div>
                 </li>
+                
+
+
+
                 <li>
                     <label for="price">List Price ($):</label>
                     <input type="number" id="price" name="price" placeholder="Enter price" step="0.01">
@@ -76,7 +81,7 @@
                 </li>
                 <li>
                     <label for="weight">Weight (lbs):</label>
-                    <input type="number" id="weight" name="weight" placeholder="Enter weight in pounds">
+                    <input type="number" id="weight" name="weight" placeholder="Enter weight in pounds" step="0.1">
                 </li>
                 <li>
                     <label for="cost">Cost ($):</label>
@@ -88,18 +93,14 @@
                 </li>
             </ul>
             <div class="form-actions">
-                <button type="submit">Save Product</button>
-                <button type="button" onclick="location.href='dashboard.html'">Back to Dashboard</button>
-                <button type="reset" onclick="resetPreview()">Clear Form</button>
+                <button type="button" class="btn-dashboard" onclick="location.href='datadashboard.html'">Data Dashboard</button>
+                <button type="reset" class="btn-clear" onclick="resetPreview()">Clear Form</button>
+                <button type="submit" class="btn-save">Save Product</button>
             </div>
+            
         </form>
     </div>
-    <script>
-        // Função para resetar a pré-visualização
-        function resetPreview() {
-            document.getElementById("main-image-preview").src = "img/Blue Velvet.png";
-        }
-    </script>
+   
     <script src="createProduct.js"></script>
 </body>
 </html>

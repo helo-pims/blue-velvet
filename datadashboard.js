@@ -1,3 +1,5 @@
+
+
 let products = JSON.parse(localStorage.getItem('products')) || [];
 const initialProducts = [...products];
 
@@ -10,37 +12,42 @@ function renderProducts() {
     
     
     const filteredProducts = products.filter(product =>
-        product.enabled === true && product.name.toLowerCase().includes(search)
+      product.name.toLowerCase().includes(search)
     );
     
     
 
+    document.getElementById("add-product-btn").addEventListener("click", () => {
+        const loggedInEmail = localStorage.getItem("loggedInEmail");
     
-
-
-
-
-document.getElementById("data").addEventListener("click", () => {
-    const loggedInEmail = localStorage.getItem("loggedInEmail");
-
-    if (loggedInEmail) {
-        const user = JSON.parse(localStorage.getItem(loggedInEmail));
-
-        if (user && user.role === "admin") {
-            // Redireciona para datadashboard.html se for admin
-            window.location.href = "datadashboard.html";
+        if (loggedInEmail) {
+            const user = JSON.parse(localStorage.getItem(loggedInEmail));
+    
+            if (user && (user.role === "admin" || user.role === "editor")) {
+                // Redireciona para datadashboard.html se for admin
+                window.location.href = "createProduct.html";
+            } else {
+                // Redireciona para dashboard.html para outros cargos
+                alert("Access denied. Redirecting to the main dashboard.");
+                window.location.href = "dashboard.html";
+            }
         } else {
-            // Redireciona para dashboard.html para outros cargos
-            alert("Access denied. Redirecting to the main dashboard.");
-            window.location.href = "dashboard.html";
+            // Redireciona para dashboard.html se nenhum usuário estiver logado
+            alert("You need to log in to access this page.");
+            window.location.href = "index.html";
         }
-    } else {
-        // Redireciona para dashboard.html se nenhum usuário estiver logado
-        alert("You need to log in to access this page.");
-        window.location.href = "dashboard.html";
-    }
-});
+    });
 
+document.getElementById("main-d").addEventListener("click", () => {
+        window.location.href = "dashboard.html";
+        renderProducts();
+    });
+
+// Event listener para redirecionar ao clicar no botão
+document.getElementById("add-product-btn").addEventListener("click", () => {
+    window.location.href = "createProduct.html";
+    renderProducts();
+});
 
 
 
@@ -83,7 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p><strong>Brand:</strong> ${product.brand}</p>
                         <p><strong>Category:</strong> ${product.category}</p>
                         <button onclick="viewDetails(${product.id})">View Details</button>
-                        
+                        <button onclick="editProduct(${product.id})">Edit</button>
+                        <button onclick="deleteProduct(${product.id})">Delete</button>
                     </div>
                 </div>
             </div>
@@ -121,6 +129,9 @@ function handleLogout() {
     window.location.href = "index.html"; // Redireciona para index.html ao fazer logout
 }
 
+
+
+//modal detalhes
 
 
 let currentCarouselIndex = 0; // Índice da imagem atual no carrossel
@@ -236,7 +247,14 @@ document.getElementById("prev-page").addEventListener("click", () => {
 });
 document.getElementById("logout-btn").addEventListener("click", handleLogout);
 
-
+document.getElementById("reset-btn").addEventListener("click", () => {
+    if (confirm("Reset products to initial state?")) {
+        localStorage.setItem('products', JSON.stringify(initialProducts));
+        products = [...initialProducts];
+        currentPage = 1; // Reinicia para a primeira página
+        renderProducts();
+    }
+});
 
 
 // Adicionando evento para atualizar a renderização quando o filtro ou ordenação mudar

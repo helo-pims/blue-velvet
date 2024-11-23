@@ -9,11 +9,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const form = document.getElementById("create-product-form");
+    const mainImagePreview = document.getElementById("main-image-preview");
+    const featuredImagesPreview = document.getElementById("featured-images-preview");
+
     if (!form) {
         console.error("Formulário não encontrado!");
         return;
     }
 
+    // Exibe a pré-visualização da imagem principal
+    const mainImageInput = form.querySelector("#main-image");
+    mainImageInput.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                mainImagePreview.innerHTML = `
+                    <div>
+                        <img src="${e.target.result}" alt="Main Image">
+                        <button class="remove-button" id="remove-main-image">Remover</button>
+                    </div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Remove a imagem principal
+    mainImagePreview.addEventListener("click", function (e) {
+        if (e.target.id === "remove-main-image") {
+            mainImageInput.value = ""; // Reseta o input
+            mainImagePreview.innerHTML = ""; // Limpa a pré-visualização
+        }
+    });
+
+    // Exibe a pré-visualização das imagens destacadas
+    const featuredImagesInput = form.querySelector("#featured-images");
+    featuredImagesInput.addEventListener("change", function () {
+        const files = Array.from(this.files);
+        files.forEach((file) => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const div = document.createElement("div");
+                div.innerHTML = `
+                    <img src="${e.target.result}" alt="Featured Image">
+                    <button class="remove-button">Remover</button>
+                `;
+                featuredImagesPreview.appendChild(div);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // Remove imagens destacadas individualmente
+    featuredImagesPreview.addEventListener("click", function (event) {
+        if (event.target.tagName === "BUTTON" && event.target.classList.contains("remove-button")) {
+            event.target.parentElement.remove();
+        }
+    });
+
+    // Processa e salva os dados do formulário
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -68,7 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         alert("Produto adicionado com sucesso!");
         form.reset();
-        window.location.href = "dashboard.html";
+        mainImagePreview.innerHTML = ""; // Limpa a pré-visualização da imagem principal
+        featuredImagesPreview.innerHTML = ""; // Limpa a pré-visualização das imagens destacadas
+        window.location.href = "datadashboard.html";
     });
 
     function getNextProductId() {
@@ -76,23 +133,22 @@ document.addEventListener("DOMContentLoaded", function () {
         return products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
     }
 
-    // Função para processar a imagem principal
     function processMainImage(file) {
         return new Promise((resolve) => {
-            if (!file || !(file instanceof File)) {
-                resolve("img/Blue Velvet.png"); // Imagem padrão
+            if (!file || !(file instanceof File) || file.size === 0) {
+                // Define a imagem padrão caso nenhum arquivo seja fornecido
+                resolve("img/Blue Velvet.png");
                 return;
             }
 
             const reader = new FileReader();
             reader.onload = function (e) {
-                resolve(e.target.result); // Base64 da imagem
+                resolve(e.target.result); // Base64 da imagem carregada pelo usuário
             };
             reader.readAsDataURL(file);
         });
     }
 
-    // Função para processar as imagens destacadas
     function processFeaturedImages(files) {
         return new Promise((resolve) => {
             const images = [];

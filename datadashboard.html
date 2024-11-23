@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Management Dashboard</title>
+    <title>Data Management Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
         <header class="dashboard-header">
             <div class="logo">
                 <img src="img/blueVelvet.png" alt="Logo" class="logo-img">
-                <span class="logo-text">Product Dashboard Management</span>
+                <span class="logo-text">Data Management Dashboard</span>
             </div>
             <div class="welcome-container">
                 <span class="welcome-text">Welcome,
@@ -51,8 +51,9 @@
                             <option value="desc">Descending</option>
                         </select>
                     </div>
-                    
-                    <button class="data" id="data">View All</button>
+                    <button class='reset-btn'id="reset-btn"><img src="img/rotate.png" alt=""></button>
+                    <button class= 'add-product-btn'id="add-product-btn"><img src="img/plus.png" alt=""></button>
+                    <button class="data" id="main-d">Main Dashboard</button>
                 </div>
             </div>
             <div id="product-table" class="product-table"></div>
@@ -67,7 +68,8 @@
 </html>
 
 
-    <!-- Modal for Product Details -->
+
+   <!-- Modal for Product Details -->
 
 <div id="product-modal" class="modal">
     <div class="modal-content">
@@ -106,8 +108,7 @@
 </div>
 
 
-
      <!--Load scripts -->
-    <script src="dashboard.js"></script>
+    <script src="datadashboard.js"></script>
 </body>
 </html>

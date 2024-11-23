@@ -8,8 +8,9 @@
 /* Corpo da página */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f1f6fc; /* Fundo azul suave */
+    background-color: #ffffff; /* Fundo azul suave */
     color: #1a1919; /* Cor de texto padrão */
+    padding-top: 100px; /* Ajustado para header responsivo */
 }
 
 /* Container principal do dashboard */
@@ -62,7 +63,7 @@ body {
     padding: 15px 28px; /* Mantém o tamanho original */
     font-size: 1.1em; /* Mantém o tamanho do texto */
     font-weight: bold;
-    background: linear-gradient(45deg, #6a11cb 0%, #5f0fb4  100%); /* Gradiente roxo */
+    background: linear-gradient(45deg, #682da7 0%, #5a2e88  100%); /* Gradiente roxo */
     color: white;
     border: none;
     border-radius: 25px; /* Mantém a borda arredondada original */
@@ -73,7 +74,7 @@ body {
 #logout-btn:hover {
     transform: scale(1.03);
     box-shadow: rgba(170, 125, 250, 0.9) 0px 23px 10px -20px;
-    background: linear-gradient(45deg, #4e089e 0%, #9232cd 100%);
+    background: linear-gradient(45deg, rgb(81, 28, 141) 0%, #6e2cb4 100%);
 }
 
 #logout-btn:active {
@@ -112,93 +113,146 @@ body {
     
 }
 
-/* Ajustando o layout do search e sort */
+/* Seção de busca e ordenação */
 .search-section {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Espaço entre os campos */
-    margin-top: 15px; /* Ajuste a margem superior conforme necessário */
-    margin-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap; /* Permite reorganização em telas pequenas */
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Espaço entre os elementos */
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+/* Container principal da busca */
+.container {
+  position: relative;
+  background: linear-gradient(135deg, rgb(179, 208, 253) 0%, rgb(164, 202, 248) 100%);
+  border-radius: 35px;
+  padding: 8px;
+  display: grid;
+  place-content: center;
+  z-index: 0;
+  max-width: 330px;
+  width: 100%;
+  margin: 0 10px;
+}
+
+/* Campo de busca */
+.search-container {
+  position: relative;
+  width: 100%;
+  border-radius: 35px;
+  background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.search-container::after, .search-container::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  position: absolute;
+}
+
+.search-container::before {
+  top: -1px;
+  left: -1px;
+  background: linear-gradient(0deg, #dae8f7 0%, #ffffff 100%);
+  z-index: -1;
+}
+
+.search-container::after {
+  bottom: -1px;
+  right: -1px;
+  background: linear-gradient(0deg, rgb(163, 206, 255) 0%, rgb(211, 232, 255) 100%);
+  box-shadow: #4f9ce8b3 3px 3px 5px 0px, #4f9ce8b3 5px 5px 20px 0px;
+  z-index: -2;
+}
+
+.input {
+  padding: 6px;
+  width: 100%;
+  background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
+  border: none;
+  color: #286cac;
+  font-size: 18px;
+  border-radius: 35px;
+}
+
+.input:focus {
+  outline: none;
+  background: linear-gradient(135deg, rgb(239, 247, 255) 0%, rgb(214, 229, 247) 100%);
+}
+
+/* Ícone de busca */
+.search__icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-left: 10px;
+}
+
+/* Opções de ordenação */
+.sort-options {
+  display: flex;
+  gap: 10px; /* Espaço entre os selects */
+  flex-wrap: wrap; /* Reorganiza os selects em telas menores */
+}
+
+.sort-options select {
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+  /* Responsividade */
+@media (max-width: 768px) {
+  .dashboard-header {
+      flex-direction: column; /* Alinha os itens verticalmente */
+      padding: 10px;
   }
+
+  .logo {
+      justify-content: center; /* Centraliza a logo */
+  }
+
+  .welcome-container {
+      margin: 10px 0; /* Adiciona espaçamento ao redor */
+  }
+
+  #logout-btn {
+      margin-top: 10px; /* Dá espaço ao botão */
+      width: 100%; /* Ocupa toda a largura */
+      text-align: center; /* Centraliza o texto */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+      width: 50px; /* Ajusta o tamanho da logo para telas pequenas */
+      height: 50px;
+  }
+
+  .logo-text {
+      font-size: 1.2em; /* Ajusta o tamanho do texto */
+  }
+
+  .welcome-text {
+      font-size: 0.9em; /* Texto menor para caber melhor */
+  }
+
+  .role-text {
+      font-size: 0.8em; /* Reduzido para evitar sobrecarga */
+  }
+
+  #logout-btn {
+      font-size: 0.8em; /* Reduz o tamanho do botão */
+  }
+}
   
-  .container {
-    position: relative;
-    background: linear-gradient(135deg, rgb(179, 208, 253) 0%, rgb(164, 202, 248) 100%);
-    border-radius: 35px;
-    padding: 8px;
-    display: grid;
-    place-content: center;
-    z-index: 0;
-    max-width: 330px;
-    width: 100%;
-    margin: 0 10px;
-  }
   
-  .search-container {
-    position: relative;
-    width: 100%;
-    border-radius: 35px;
-    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
-    padding: 5px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-container::after, .search-container::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    position: absolute;
-  }
-  
-  .search-container::before {
-    top: -1px;
-    left: -1px;
-    background: linear-gradient(0deg, #dae8f7 0%, #ffffff 100%);
-    z-index: -1;
-  }
-  
-  .search-container::after {
-    bottom: -1px;
-    right: -1px;
-    background: linear-gradient(0deg, rgb(163, 206, 255) 0%, rgb(211, 232, 255) 100%);
-    box-shadow: #4f9ce8b3 3px 3px 5px 0px, #4f9ce8b3 5px 5px 20px 0px;
-    z-index: -2;
-  }
-  
-  .input {
-    padding: 6px;
-    width: 100%;
-    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
-    border: none;
-    color: #286cac;
-    font-size: 18px;
-    border-radius: 35px;
-  }
-  
-  .input:focus {
-    outline: none;
-    background: linear-gradient(135deg, rgb(239, 247, 255) 0%, rgb(214, 229, 247) 100%);
-  }
-  
-  .search__icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    margin-left: 10px;
-  }
-  
-  .sort-options {
-    display: flex;
-    gap: 10px; /* Espaço entre os selects */
-  }
-  
-  .sort-options select {
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 14px;
-  }
   
   @media (max-width: 768px) {
     .container {
@@ -211,11 +265,36 @@ body {
     }
   }
   
-
-/* Tabela de produtos */
+  .data {
+    
+    align-items: center;  /* Alinha o texto e o ícone verticalmente */
+    background: linear-gradient(135deg, #3230b4 0%, #322fc9 100%);
+    color: #fff;          /* Cor do texto branco */
+    padding: 10px 15px;    /* Espacos internos */
+    border-radius: 50px;   /* Borda arredondada */
+    
+    border: none;          /* Remove borda */
+    cursor: pointer;      /* Muda o cursor para indicar que é clicável */
+    transition: all 0.3s ease; /* Transição suave para o efeito de hover */
+  }
+  
+  
+  
+  .data:hover {
+    background: linear-gradient(135deg, #25358f 0%, #2e1f80 100%);
+    box-shadow: rgba(19, 99, 180, 0.7) 3px 3px 5px 0px, rgba(16, 99, 182, 0.7) 5px 5px 20px 0px; /* Sombra azul no hover */
+  }
+  
+  .data:focus {
+    outline: none; /* Remove a borda padrão de foco */
+  }
+  
+  .data:active {
+    transform: scale(0.98); /* Efeito de "aperto" quando clicado */
+  }
 
 .add-product-btn {
-    display: inline-flex; /* Faz com que o texto e o ícone fiquem lado a lado */
+    
     align-items: center;  /* Alinha o texto e o ícone verticalmente */
     background: linear-gradient(135deg, #4fb430 0%, #53c92f 100%);
     color: #fff;          /* Cor do texto branco */
@@ -233,8 +312,8 @@ body {
   }
   
   .add-product-btn:hover {
-    background: linear-gradient(135deg, rgb(184, 129, 255) 0%, rgb(153, 86, 204) 100%); /* Cor roxa no hover */
-    box-shadow: rgba(79, 156, 232, 0.7) 3px 3px 5px 0px, rgba(79, 156, 232, 0.7) 5px 5px 20px 0px; /* Sombra azul no hover */
+    background: linear-gradient(135deg, #3e8f25 0%, #35801f 100%);
+    box-shadow: rgba(19, 99, 180, 0.7) 3px 3px 5px 0px, rgba(16, 99, 182, 0.7) 5px 5px 20px 0px; /* Sombra azul no hover */
   }
   
   .add-product-btn:focus {
@@ -266,8 +345,8 @@ body {
   }
   
   .reset-btn:hover {
-    background: linear-gradient(135deg, rgb(184, 129, 255) 0%, rgb(153, 86, 204) 100%); /* Cor roxa no hover */
-    box-shadow: rgba(79, 156, 232, 0.7) 3px 3px 5px 0px, rgba(79, 156, 232, 0.7) 5px 5px 20px 0px; /* Sombra azul no hover */
+    background: linear-gradient(135deg, #8d2626 0%, #aa2828 100%);
+    box-shadow: rgba(19, 99, 180, 0.7) 3px 3px 5px 0px, rgba(16, 99, 182, 0.7) 5px 5px 20px 0px; /* Sombra azul no hover */
   }
   
   .reset-btn:focus {
@@ -419,7 +498,7 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 20%;
-    background-color: #999;
+    background-color: #f2f4ff;
     margin-bottom: 10px;
     overflow: hidden;  /* Impede que a imagem ultrapasse os limites do círculo */
 }
@@ -439,7 +518,7 @@ body {
   }
   
   .flip-card-back {
-    background: linear-gradient(120deg, #0A67E0 65%, #108ED3 35%);
+    background: linear-gradient(120deg, #316ab4 65%, #338bbb 35%);
     color: white;
     transform: rotateY(180deg);
   }
@@ -575,115 +654,151 @@ body {
 
 
 
-
 /* Estilos do Modal */
 .modal {
-    display: none; /* Oculto por padrão */
-    position: fixed; /* Fica fixo na tela */
-    z-index: 1000; /* Fica acima de outros elementos */
-    left: 0;
-    top: 0;
-    width: 100%; /* Largura total da tela */
-    height: 100%; /* Altura total da tela */
-    overflow: auto; /* Permite rolagem se necessário */
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
+  display: none; /* Oculto por padrão */
+  position: fixed; /* Fica fixo na tela */
+  z-index: 1000; /* Fica acima de outros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largura total da tela */
+  height: 100%; /* Altura total da tela */
+  overflow: auto; /* Permite rolagem se necessário */
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
 }
 
 /* Conteúdo do Modal */
 .modal-content {
-    background-color: white; /* Fundo branco */
-    margin: auto; /* Centraliza horizontalmente */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    max-width: 800px; /* Largura máxima do modal */
-    height: auto; /* Altura automática para acomodar o conteúdo */
-    max-height: 90vh; /* Altura máxima do modal (90% da altura da tela) */
-    overflow-y: auto; /* Permite rolagem vertical se necessário */
-    position: relative; /* Para posicionamento interno, se necessário */
+  background-color: white; /* Fundo branco */
+  margin: auto; /* Centraliza horizontalmente */
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  max-width: 800px; /* Largura máxima do modal */
+  height: auto; /* Altura automática para acomodar o conteúdo */
+  max-height: 90vh; /* Altura máxima do modal (90% da altura da tela) */
+  overflow-y: auto; /* Permite rolagem vertical se necessário */
+  position: relative; /* Para posicionamento interno, se necessário */
 }
 
 /* Botão de fechar estilizado */
 .button {
-    position: absolute; /* Posicionado no topo do modal */
-    top: 10px; /* Espaçamento do topo */
-    right: 10px; /* Espaçamento da direita */
-    width: 2.5em; /* Largura reduzida do botão */
-    height: 2.5em; /* Altura reduzida do botão */
-    border: none; /* Remove bordas */
-    background: rgba(180, 83, 107, 0.11); /* Fundo transparente */
-    border-radius: 20%; /* Botão circular */
-    transition: background 0.5s; /* Animação na mudança de cor */
-    cursor: pointer; /* Cursor pointer para indicar clique */
+  position: absolute; /* Posicionado no topo do modal */
+  top: 10px; /* Espaçamento do topo */
+  right: 10px; /* Espaçamento da direita */
+  width: 2.5em; /* Largura reduzida do botão */
+  height: 2.5em; /* Altura reduzida do botão */
+  border: none; /* Remove bordas */
+  background: rgba(180, 83, 107, 0.11); /* Fundo transparente */
+  border-radius: 20%; /* Botão circular */
+  transition: background 0.5s; /* Animação na mudança de cor */
+  cursor: pointer; /* Cursor pointer para indicar clique */
 }
 
 /* Linhas cruzadas no botão */
 .X,
 .Y {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1.5em; /* Largura ajustada das linhas */
-    height: 1.5px; /* Espessura das linhas */
-    background-color: #000; /* Cor das linhas */
-    transform: translate(-50%, -50%) rotate(45deg); /* Posição e rotação padrão */
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.5em; /* Largura ajustada das linhas */
+  height: 1.5px; /* Espessura das linhas */
+  background-color: #000; /* Cor das linhas */
+  transform: translate(-50%, -50%) rotate(45deg); /* Posição e rotação padrão */
 }
 
 .Y {
-    transform: translate(-50%, -50%) rotate(-45deg); /* Rotação oposta */
+  transform: translate(-50%, -50%) rotate(-45deg); /* Rotação oposta */
 }
 
 /* Efeitos ao passar o mouse */
 .button:hover {
-    background-color: rgb(211, 21, 21); /* Cor ao passar o mouse */
+  background-color: rgb(211, 21, 21); /* Cor ao passar o mouse */
 }
 
 .button:active {
-    background-color: rgb(130, 0, 0); /* Cor ao clicar */
+  background-color: rgb(130, 0, 0); /* Cor ao clicar */
 }
 
+/* Carrossel de imagens */
+#images-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 20px 0;
+}
 
+#carousel-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px; /* Bordas arredondadas para a imagem */
+}
 
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
 
+.carousel-control:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#prev-carousel-image {
+  left: 10px;
+}
+
+#next-carousel-image {
+  right: 10px;
+}
 
 /* Imagem do produto no modal */
 #modal-product-image {
-    width: 100%; /* Largura total do modal */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 250px; /* Altura máxima da imagem (ajustada para não interferir no modal) */
-    object-fit: cover; /* Cobre o espaço sem distorcer a imagem */
-    border-radius: 8px; /* Bordas levemente arredondadas na imagem */
+  width: 100%; /* Largura total do modal */
+  height: auto; /* Mantém a proporção da imagem */
+  max-height: 250px; /* Altura máxima da imagem (ajustada para não interferir no modal) */
+  object-fit: cover; /* Cobre o espaço sem distorcer a imagem */
+  border-radius: 8px; /* Bordas levemente arredondadas na imagem */
 }
 
 /* Estilo dos textos dentro do modal */
 .modal-content h2 {
-    font-size: 24px; /* Tamanho da fonte do título */
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
+  font-size: 24px; /* Tamanho da fonte do título */
+  margin-bottom: 10px; /* Espaçamento abaixo do título */
 }
 
 .modal-content p {
-    font-size: 16px; /* Tamanho da fonte dos parágrafos */
-    margin-bottom: 10px; /* Espaçamento abaixo dos parágrafos */
+  font-size: 16px; /* Tamanho da fonte dos parágrafos */
+  margin-bottom: 10px; /* Espaçamento abaixo dos parágrafos */
 }
 
 /* Estilos para as informações do produto em destaque (negrito) */
 .modal-content strong {
-    color: #2234aa; /* Cor azul escuro para os rótulos em negrito */
+  color: #2234aa; /* Cor azul escuro para os rótulos em negrito */
 }
 
 /* Estilo para modal em dispositivos menores */
 @media (max-width: 768px) {
-    .modal-content {
-        width: 90%; /* Largura maior em dispositivos menores para melhor visualização */
-        padding: 15px;
-        font-size: 14px;
-        max-height: 80vh; /* Ajusta a altura máxima em dispositivos menores*/
-        overflow-y: auto; /* Permite rolagem vertical se necessário em telas pequenas*/
-    }
-    
-    #modal-product-image {
-        max-height: 200px; /* Altura máxima da imagem em dispositivos menores*/
-        border-radius: 8px; /* Mantém bordas arredondadas na imagem*/
-    }
+  .modal-content {
+      width: 90%; /* Largura maior em dispositivos menores para melhor visualização */
+      padding: 15px;
+      font-size: 14px;
+      max-height: 80vh; /* Ajusta a altura máxima em dispositivos menores*/
+      overflow-y: auto; /* Permite rolagem vertical se necessário em telas pequenas*/
+  }
+  
+  #modal-product-image {
+      max-height: 200px; /* Altura máxima da imagem em dispositivos menores*/
+      border-radius: 8px; /* Mantém bordas arredondadas na imagem*/
+  }
 }
-

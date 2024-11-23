@@ -25,6 +25,18 @@
                     <input type="text" id="product-name" name="product-name" required>
                 </li>
                 <li>
+                    <label for="main-image">Main Image:</label>
+                    <input type="file" id="main-image" accept="image/*">
+                    <div id="main-image-preview" class="image-preview"> <img src="img/Blue Velvet.png" alt=""></div>
+                </li>
+                
+                <li>
+                    <label for="featured-images">Featured Images:</label>
+                    <input type="file" id="featured-images" accept="image/*" multiple>
+                    <div id="featured-images-preview" class="image-preview"></div>
+                </li>
+                
+                <li>
                     <label for="short-description">Short Description:</label>
                     <textarea id="short-description" name="short-description"></textarea>
                 </li>
@@ -56,7 +68,10 @@
                             <option value="false">No</option>
                         </select>
                         <label for="stock">In Stock:</label>
-                        <input type="checkbox" id="stock" name="stock" value="true">
+                        <select id="stock" name="stock">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
                     </div>
                 </li>
                 <li>
@@ -77,8 +92,10 @@
                 </li>
             </ul>
             <div class="form-actions">
-                <button type="submit">Save Changes</button>
-                <button type="button" onclick="location.href='dashboard.html'">Back to Dashboard</button>
+               
+                <button type="button" class="btn-dashboard" onclick="location.href='datadashboard.html'">Back to Data Dashboard</button>
+                <button type="submit"  class="btn-save" >Save Changes</button>
+                
             </div>
         </form>
     </div>
