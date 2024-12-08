@@ -145,14 +145,29 @@ function viewDetails(productId) {
         return;
     }
 
-    // Preenchendo os dados do modal
-    document.getElementById("modal-product-name").textContent = product.name || "No Name";
-    document.getElementById("modal-product-short-description").textContent = product.shortDescription || "No short description.";
-    document.getElementById("modal-product-full-description").textContent = product.fullDescription || "No full description.";
-    document.getElementById("modal-product-brand").textContent = product.brand || "Not specified";
-    document.getElementById("modal-product-category").textContent = product.category || "Not specified";
+   // Preenchendo os dados do modal
+   document.getElementById("modal-product-name").textContent = product.name || "No Name";
+   document.getElementById("modal-product-short-description").textContent = product.shortDescription || "No short description.";
+   document.getElementById("modal-product-full-description").textContent = product.fullDescription || "No full description.";
+   document.getElementById("modal-product-brand").textContent = product.brand || "Not specified";
+   document.getElementById("modal-product-category").textContent = product.category || "Not specified";
+   const price = product.price ? `$${product.price.toFixed(2)}` : "$0.00";
+   const discount = product.discount ? `${product.discount.toFixed(2)}%` : "No discount";
+   document.getElementById("modal-product-price").textContent = price;
+   document.getElementById("modal-product-discount").textContent = discount;
+   // Stock and enabled status
+   document.getElementById("modal-product-in-stock").textContent = product.inStock ? "Yes" : "No";
+   document.getElementById("modal-product-enabled").textContent = product.enabled ? "Yes" : "No";
+   document.getElementById("modal-product-dimensions").textContent = product.dimensions || "Not specified";
+   document.getElementById("modal-product-weight").textContent = product.weight ? `${product.weight} kg` : "Not specified";
+       // Cost and additional details
+       const cost = product.cost ? `$${product.cost.toFixed(2)}` : "Not specified";
+       document.getElementById("modal-product-cost").textContent = cost;
+       document.getElementById("modal-product-details").textContent = product.details || "No additional details.";
+           // Timestamps
+   document.getElementById("modal-product-created-at").textContent = product.createdAt || "Unknown";
+   document.getElementById("modal-product-updated-at").textContent = product.updatedAt || "Unknown";
 
-    // Outras informações omitidas por simplicidade
 
     // Configuração do carrossel
     carouselImages = [product.mainImage, ...(product.extraImages || [])].filter(Boolean); // Combina a imagem principal com as destacadas
